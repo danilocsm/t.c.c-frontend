@@ -1,8 +1,7 @@
-function App() {
+import HomePage from "./pages/home/HomePage";
 
-  return (
-   <h1 className="font-serif text-blue-700">Hello world</h1> 
-  )
+function App() {
+  return <HomePage />;
 }
 
-export default App
+export default App;
