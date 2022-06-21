@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    @apply bg-zinc-700;
-    @apply grid items-center justify-center;
+@font-face {
+  font-family: "grandstander";
+  src: url("fonts/Grandstander Regular 400.ttf");
+}
+
+body {
+  @apply bg-cerGreen bg-opacity-cerBgOpacity;
+  @apply grid items-center justify-center;
 }
