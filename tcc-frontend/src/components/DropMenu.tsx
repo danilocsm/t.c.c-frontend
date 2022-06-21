@@ -29,13 +29,17 @@ function DropMenu(props: DropMenuProps) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute top-[55px] left-[-30px] w-[164px] h-[152px] rounded-md bg-cerBlue focus:outline-none">
+          <Menu.Items className="absolute top-[50px] md:left-[-35px] w-[164px] h-[152px] rounded-md bg-cerBlue focus:outline-none left-[-45px]">
             {props.items.map((item) => {
               return (
                 <div className="w-full h-1/4 pt-2 border-b-[1px] border-zinc-100">
                   <Menu.Item>
                     {({ active }) => (
-                      <a className={`${active ? 'underline underline-offset-2' : ''} flex flex-col items-center hover:opacity-20 text-white font-grandstander font-bold`}>
+                      <a
+                        className={`${
+                          active ? "underline underline-offset-2" : ""
+                        } flex flex-col items-center hover:opacity-20 text-white font-grandstander font-bold`}
+                      >
                         {item.title}
                       </a>
                     )}
