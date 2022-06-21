@@ -13,7 +13,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        grandstander: ["grandstander"],
+        grandstander: ["grandstander",],
       },
       opacity: {
         'cerBgOpacity': '0.19',

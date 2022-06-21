@@ -5,8 +5,8 @@ interface NavBarItemProps {
 
 function NavBarItem(props: NavBarItemProps) {
   return (
-    <li className="">
-      <a href="#" className="text-navBarFontColor1 font-grandstander font-bold hover:opacity-20 focus:outline-none focus:font-extrabold">{props.text}</a>
+    <li className="focus:text-underline-offset-2">
+      <a href="#" className="text-navBarFontColor1 font-grandstander font-bold hover:opacity-20 focus:outline-none focus:underline underline-offset-2">{props.text}</a>
     </li>
   );
 }
