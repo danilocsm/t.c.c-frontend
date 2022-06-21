@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "grandstander";
+  src: url("fonts/Grandstander Regular 400.ttf");
+}
+
+body {
+  @apply bg-cerGreen bg-opacity-cerBgOpacity;
+  @apply grid items-center justify-center;
+}
