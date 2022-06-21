@@ -23,7 +23,7 @@ function NavBar() {
             })}
           </div>
         </div>
-        <div className="flex md:hidden">
+        <div className="md:hidden">
           <DropMenu
             title="Menu"
             items={[
