@@ -1,6 +1,5 @@
 import HomeLogo from "../HomeLogo";
 import NavBarItem from "./NavBarItem";
-import { Menu } from "@headlessui/react";
 import DropMenu from "../DropMenu";
 
 const navItems = ["Atividades", "Projeto", "Depoimentos", "Dúvidas"];
@@ -14,17 +13,26 @@ const utilsItems = [
 function NavBar() {
   return (
     <nav>
-      <div className="relative flex flex-row justify-start gap-2 items-center w-screen h-[89px] bg-cerPurple mx-auto sm:px-6 opacity-100">
+      <div className="relative flex flex-row justify-start gap-2 items-center w-screen h-[72px] bg-cerBlue mx-auto sm:px-6 opacity-100 rounded-b-[20px]">
         <HomeLogo />
-        <div className="items-center">
-          <ul className="flex flex-row items-center gap-7">
-            <li>
-              <DropMenu title="Utensílios" items={utilsItems} />
-            </li>
+        <DropMenu title="Utensílios" items={utilsItems} />
+        <div className="hidden md:block">
+          <div className="flex flex-row items-center gap-7">
             {navItems.map((navItem) => {
               return <NavBarItem text={navItem} href="#" />;
             })}
-          </ul>
+          </div>
+        </div>
+        <div className="flex md:hidden">
+          <DropMenu
+            title="Menu"
+            items={[
+              { title: "Atividades", href: "#" },
+              { title: "Projeto", href: "#" },
+              { title: "Depoimentos", href: "#" },
+              { title: "Dúvidas", href: "#" },
+            ]}
+          />
         </div>
       </div>
     </nav>

@@ -12,10 +12,10 @@ function DropMenu(props: DropMenuProps) {
     <div>
       <Menu as="div" className="relative inline-block">
         <div>
-          <Menu.Button className="inline-flex w-full text-navBarFontColor1 font-grandstander font-bold focus:outline-none focus:underline underline-offset-2 hover:opacity-20">
+          <Menu.Button className="inline-flex w-full text-white font-grandstander font-bold focus:outline-none focus:underline underline-offset-2 hover:opacity-20">
             {props.title}
             <ChevronDownIcon
-              className="mt-[3px] h-5 w-5 text-navBarFontColor1 hover:text-zinc-100"
+              className="mt-[3px] h-5 w-5 text-white hover:text-navBarFontColor1"
               aria-hidden="true"
             />
           </Menu.Button>
@@ -29,13 +29,13 @@ function DropMenu(props: DropMenuProps) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute top-[55px] left-[-30px] w-[164px] h-[152px] rounded-md bg-cerPurple focus:outline-none">
+          <Menu.Items className="absolute top-[55px] left-[-30px] w-[164px] h-[152px] rounded-md bg-cerBlue focus:outline-none">
             {props.items.map((item) => {
               return (
                 <div className="w-full h-1/4 pt-2 border-b-[1px] border-zinc-100">
                   <Menu.Item>
                     {({ active }) => (
-                      <a className={`${active ? 'underline underline-offset-2' : ''} flex flex-col items-center hover:opacity-20 text-navBarFontColor1 font-grandstander font-bold`}>
+                      <a className={`${active ? 'underline underline-offset-2' : ''} flex flex-col items-center hover:opacity-20 text-white font-grandstander font-bold`}>
                         {item.title}
                       </a>
                     )}
