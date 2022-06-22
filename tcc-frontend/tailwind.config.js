@@ -13,12 +13,12 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        grandstander: ["grandstander",],
+        grandstander: ["grandstander"],
       },
       opacity: {
-        'cerBgOpacity': '0.19',
-      }
+        cerBgOpacity: "0.19",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };

@@ -9,5 +9,6 @@
 
 body {
   @apply bg-cerGreen bg-opacity-cerBgOpacity;
-  @apply grid items-center justify-center;
+  @apply grid items-center justify-center overflow-x-hidden;
+  @apply scrollbar-thin scrollbar-thumb-cerBlue
 }

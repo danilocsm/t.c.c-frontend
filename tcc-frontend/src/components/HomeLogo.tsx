@@ -1,6 +1,6 @@
 function HomeLogo() {
   return (
-    <a href="#" className="focus:outline-none hover:animate-pulse focus:animate-pulse">
+    <a href="/" className="focus:outline-none hover:animate-pulse focus:animate-pulse">
       <svg
         className="w-[181px] h-[46px]"
         viewBox="0 0 703 179"
