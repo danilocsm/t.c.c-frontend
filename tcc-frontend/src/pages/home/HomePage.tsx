@@ -6,7 +6,6 @@ function HomePage() {
   return (
     <>
       <div className="w-100vw grid items-center justify-center">
-        <NavBar />
         <div className="flex flex-row items-center justify-center w-screen">
           <h1 className="font-grandstander text-3xl text-black mt-4 text-center">
             CONHEÇA MAIS NOSSO PROJETO
@@ -43,7 +42,11 @@ function HomePage() {
           </div>
         </div>
         <div className="flex flex-row justify-center w-screen">
-          <Gallery />
+          <Gallery className="">
+            <div className="md:w-[300px] md:h-full rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
+            <div className="md:w-[300px] md:h-full rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
+            <div className="md:w-[300px] md:h-full rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
+          </Gallery>
         </div>
         <div className="flex flex-col items-center justify-center w-screen mt-10 mb-4">
           <InfoBox
