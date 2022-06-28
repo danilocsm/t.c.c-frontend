@@ -4,11 +4,12 @@
 
 @font-face {
   font-family: "grandstander";
-  src: url("fonts/Grandstander Regular 400.ttf");
+  src: url("/public/fonts/Grandstander Regular 400.ttf");
 }
 
 body {
   @apply bg-cerGreen bg-opacity-cerBgOpacity;
   @apply grid items-center justify-center overflow-x-hidden;
-  @apply scrollbar-thin scrollbar-thumb-cerBlue
+  @apply scrollbar-thin scrollbar-thumb-cerBlue;
+  @apply font-grandstander;
 }
