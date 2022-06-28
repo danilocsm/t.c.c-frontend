@@ -1,6 +1,6 @@
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import SearchButton from "./SearchButton";
 
@@ -38,12 +38,12 @@ function SearchBar() {
   };
 
   return (
-    <div className="top-14 md:w-[833px] w-2/3 flex flex-row items-center justify-center">
+    <div className="flex flex-row items-center justify-center w-screen">
       <Combobox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
-          <div className="relative w-full flex flex-row cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+          <div className="relative md:w-[770px] md:h-[61px] w-1/2 h-1/3 mt-4 flex flex-row cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
-              className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+              className="w-full border-none pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               displayValue={(person) => person.name}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Digite sua busca aqui..."
