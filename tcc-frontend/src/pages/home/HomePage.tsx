@@ -41,29 +41,25 @@ function HomePage() {
             </p>
           </div>
         </div>
-        <div className="flex flex-row justify-center w-screen">
+        <div className="flex flex-row justify-center w-screen h-fit">
           <Gallery className="">
-            <div className="md:w-[300px] md:h-full rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-            <div className="md:w-[300px] md:h-full rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-            <div className="md:w-[300px] md:h-full rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
+            <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
+            <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
+            <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
           </Gallery>
         </div>
-        <div className="flex flex-col items-center justify-center w-screen mt-10 mb-4">
-          <InfoBox
-            title={"CONTATOS:"}
-            content={
-              "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt."
-            }
-          />
-        </div>
-        <div className="flex flex-col items-center justify-center w-screen mt-10 mb-4">
-          <InfoBox
-            title={"MATERIAIS:"}
-            content={
-              "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt."
-            }
-          />
-        </div>
+        <InfoBox
+          title={"CONTATOS:"}
+          content={
+            "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt."
+          }
+        />
+        <InfoBox
+          title={"MATERIAIS:"}
+          content={
+            "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt."
+          }
+        />
       </div>
     </>
   );

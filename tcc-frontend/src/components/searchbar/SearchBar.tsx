@@ -2,6 +2,7 @@ import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router";
+import SearchButton from "./SearchButton";
 
 interface SearchBarProps {
   data: Object;
@@ -103,15 +104,7 @@ function SearchBar() {
           </Transition>
         </div>
       </Combobox>
-      <button
-        className="ml-2 mt-2 md:w-1/12 w-3/12 rounded-[20px] bg-cerBlue  border-2 hover:bg-white focus:border-black focus:outline-1"
-        onClick={() => {
-          onButtonClicked();
-          console.log("Navegando...");
-        }}
-      >
-        Ir
-      </button>
+      <SearchButton onClick={onButtonClicked}/>
     </div>
   );
 }

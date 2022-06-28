@@ -5,6 +5,11 @@ import ActivityImages from "../../components/activity-images/ActivityImages";
 import Gallery from "../../components/gallery/Gallery";
 import SearchBar from "../../components/searchbar/SearchBar";
 
+// TODO remove
+import DefaultObjectImage1 from "/public/images/defaultItem1.png";
+import DefaultObjectImage2 from "/public/images/defaultItem2.png";
+import DefaultObjectImage3 from "/public/images/defaultItem3.png";
+
 function Activity() {
   const params = useParams();
   const { id } = params;
@@ -43,11 +48,34 @@ function Activity() {
           </h2>
         </div>
         <ActivityImages imagesArray={[]} />
-        <h2 className="mt-4 text-[30px] text-center">
-          UTENSÍLIOS QUE PODEM AUXILIAR:
-        </h2>
-        <Gallery className={""}>
-        </Gallery>
+        <div className="flex flex-col justify-center gap-2">
+          <h2 className="mt-6 text-[30px] text-center">
+            UTENSÍLIOS QUE PODEM AUXILIAR:
+          </h2>
+          <Gallery className={""}>
+            <ActivityObject
+              name={"Nome do objeto".toUpperCase()}
+              description={
+                "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. "
+              }
+              img={DefaultObjectImage1}
+            />
+            <ActivityObject
+              name={"Nome do objeto".toUpperCase()}
+              description={
+                "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. "
+              }
+              img={DefaultObjectImage2}
+            />
+            <ActivityObject
+              name={"Nome do objeto".toUpperCase()}
+              description={
+                "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. "
+              }
+              img={DefaultObjectImage3}
+            />
+          </Gallery>
+        </div>
         <h2 className="mt-4 text-[30px] text-center">
           OBSERVAÇÕES IMPORTANTES:
         </h2>
