@@ -6,6 +6,7 @@ import HomePage from "./pages/home/HomePage";
 import './global.css'
 import NavBar from "./components/navbar/NavBar";
 import Items from "./pages/items/Items";
+import Help from "./pages/help/Help";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/activities" element={<Activities />} />
           <Route path="/activities/detail/:id" element={<Activity />} />
           <Route path="/items" element={<Items />} />
+          <Route path="/help" element={<Help />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
