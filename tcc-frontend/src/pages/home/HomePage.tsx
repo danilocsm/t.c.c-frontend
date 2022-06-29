@@ -41,13 +41,11 @@ function HomePage() {
             </p>
           </div>
         </div>
-        <div className="flex flex-row justify-center w-screen h-fit">
-          <Gallery className="">
-            <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-            <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-            <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-          </Gallery>
-        </div>
+        <Gallery>
+          <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
+          <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
+          <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
+        </Gallery>
         <InfoBox
           title={"CONTATOS:"}
           content={
