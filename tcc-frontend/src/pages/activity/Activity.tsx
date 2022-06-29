@@ -48,7 +48,7 @@ function Activity() {
           </h2>
         </div>
         <ActivityImages imagesArray={[]} />
-        <div className="flex flex-col justify-center gap-2">
+        <div className="flex flex-col justify-center">
           <h2 className="mt-6 text-[30px] text-center">
             UTENSÍLIOS QUE PODEM AUXILIAR:
           </h2>

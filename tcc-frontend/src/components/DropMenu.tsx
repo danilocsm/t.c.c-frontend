@@ -29,7 +29,7 @@ function DropMenu(props: DropMenuProps) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute top-[50px] md:left-[-35px] w-[164px] h-[152px] rounded-md bg-cerBlue focus:outline-none left-[-45px]">
+          <Menu.Items className="absolute top-[50px] md:left-[-35px] w-[164px] h-fit rounded-md bg-cerBlue focus:outline-none left-[-60px]">
             {props.items.map((item) => {
               return (
                 <>

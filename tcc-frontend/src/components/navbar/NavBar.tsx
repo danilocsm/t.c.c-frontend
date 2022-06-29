@@ -3,16 +3,11 @@ import NavBarItem from "./NavBarItem";
 import DropMenu from "../DropMenu";
 
 const navItems = [
+  { title: "Utensílios", href:"/items"},
   { title: "Atividades", href: "/activities" },
   { title: "Projeto", href: "/about" },
   { title: "Depoimentos", href: "/testimonials" },
   { title: "Dúvidas", href: "/help" },
-];
-const utilsItems = [
-  { title: "Brinquedos", href: "/toys" },
-  { title: "Mobiliário", href: "/mobil" },
-  { title: "Vestuário", href: "/cloathing" },
-  { title: "Alimentação", href: "/food" },
 ];
 
 function NavBar() {
@@ -20,7 +15,6 @@ function NavBar() {
     <nav>
       <div className="static flex flex-row justify-start gap-2 items-center w-screen h-[72px] bg-cerBlue mx-auto sm:px-6 opacity-100 rounded-b-[20px]">
         <HomeLogo />
-        <DropMenu title="Utensílios" items={utilsItems} />
         <div className="hidden md:block">
           <div className="flex flex-row items-center gap-7">
             {navItems.map((navItem) => {
@@ -28,7 +22,7 @@ function NavBar() {
             })}
           </div>
         </div>
-        <div className="md:hidden">
+        <div className="md:hidden absolute right-14 top-6">
           <DropMenu title="Menu" items={navItems} />
         </div>
       </div>
