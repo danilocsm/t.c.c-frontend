@@ -7,6 +7,9 @@ function HelpForm() {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
+    setName("");
+    setEmail("");
+    setComment("");
     // send doubt to default email
   };
 
@@ -22,7 +25,10 @@ function HelpForm() {
           name="name"
           className="md:w-[1030px] md:h-[59px] bg-white rounded-[20px] pl-2"
           placeholder="ex: Maria José Soares Silva"
-          onChange={(event) => {setName(event.target.value)}}
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+          value={name}
         />
         <span className="text-[20px]">E-MAIL PARA CONTATO:</span>
         <input
@@ -31,6 +37,7 @@ function HelpForm() {
           className="md:w-[1030px] md:h-[59px] bg-white rounded-[20px] pl-2"
           placeholder="ex: mariajose@email.com.br"
           onChange={(event) => setEmail(event.target.value)}
+          value={email}
         />
         <span className="text-[20px]">SUA DÚVIDA:</span>
         <textarea
@@ -38,10 +45,13 @@ function HelpForm() {
           placeholder="Escreva sua dúvida aqui"
           className="md:w-[1030px] md:h-[225px] bg-white resize-none rounded-[20px] px-2 py-2"
           onChange={(event) => setComment(event.target.value)}
+          value={comment}
         ></textarea>
         <button
           type="submit"
-          disabled={comment.length === 0 || name.length === 0 || email.length === 0}
+          disabled={
+            comment.length === 0 || name.length === 0 || email.length === 0
+          }
           className="self-end rounded-[20px] bg-cerBlue w-[100px] h-[60px] mr-10 mb-2 hover:bg-cerPurple hovert:text-white focus:border-2 focus:border-cerPurple focus:text-white focus:outline-none disabled:opacity-50 disabled:hover:opacity-70 transition-all ease-in-out"
         >
           Enviar
