@@ -22,7 +22,7 @@ function HomePage() {
             cupidatat incididunt sint deserunt.
           </p>
         </div>
-        <div className="flex flex-row w-screen">
+        <div className="flex flex-row w-screen items-center justify-center">
           <div className="md:w-1/4 md:h-[245px] bg-zinc-500 mt-4 ml-6 hidden rounded-[20px] md:block"></div>
           <div className="md:w-3/4 md:h-[245px] pl-2 pr-2">
             <p className="font-grandstander text-xl text-black mt-4  pr-4 text-center indent-5">
