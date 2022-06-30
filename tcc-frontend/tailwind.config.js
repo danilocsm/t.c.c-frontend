@@ -18,6 +18,9 @@ module.exports = {
       opacity: {
         cerBgOpacity: "0.19",
       },
+      boxShadow: {
+        cerShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")],
