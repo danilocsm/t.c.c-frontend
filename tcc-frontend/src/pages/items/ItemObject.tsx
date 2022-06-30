@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 interface ItemObjectProps {
   title: string;
   image: string;
@@ -5,6 +7,11 @@ interface ItemObjectProps {
 }
 
 function ItemObject({ title, image, link }: ItemObjectProps) {
+
+  const onClick = () => {
+    window.location.replace(link);
+  };
+
   return (
     <div className="flex flex-col md:w-[291px] md:h-[481px] w-fit h-fit items-center justify-center overlflow-hidden">
       <img
@@ -16,7 +23,10 @@ function ItemObject({ title, image, link }: ItemObjectProps) {
         Atividades que podem ser realizadas: exemplo1, exemplo2, exemplo3,
         exemplo4, exemplo5.
       </p>
-      <button className="md:w-[270px] md:h-[47px] w-fit h-fit rounded-[20px] bg-cerBlue text-center py-2 hover:bg-cerPurple transition-all ease-in-out focus:border-4 focus:border-cerPurple focus:outline-none text-[20px] focus:text-white">
+      <button
+        className="md:w-[270px] md:h-[47px] w-fit h-fit rounded-[20px] bg-cerBlue text-center py-2 hover:bg-cerPurple transition-all ease-in-out focus:border-4 focus:border-cerPurple focus:outline-none text-[20px] focus:text-white"
+        onClick={onClick}
+      >
         clique para comprar
       </button>
     </div>

@@ -7,6 +7,8 @@ import './global.css'
 import NavBar from "./components/navbar/NavBar";
 import Items from "./pages/items/Items";
 import Help from "./pages/help/Help";
+import Testimonials from "./pages/testimonial/Testimonials";
+import TestimonialForm from "./pages/testimonial/TestimonialForm";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/activities/detail/:id" element={<Activity />} />
           <Route path="/items" element={<Items />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/testimonials/new" element={<TestimonialForm />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
