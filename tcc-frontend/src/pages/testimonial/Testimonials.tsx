@@ -1,3 +1,6 @@
+import { useRef, useState } from "react";
+import DefaultForm from "../../components/default-form/DefaultForm";
+import AddTestimonialButton from "./AddTestimonialButton";
 import TestimonialField from "./TestimonialField";
 
 const testimonials = [
@@ -18,7 +21,25 @@ const testimonials = [
   },
 ];
 
+const scrollToRef = (ref: any) => {
+  window.scrollTo(0, ref.current.offsetTop);
+};
+
 function Testimonials() {
+  const [showTestimonialLog, setShowTestimonialLog] = useState(false);
+  const myRef = useRef(null);
+
+  const onButtonCLick = async () => {
+    setShowTestimonialLog(true);
+    await setTimeout(() => {
+      scrollToRef(myRef);
+    }, 10);
+  };
+
+  const onSubmit = () => {
+    setShowTestimonialLog(false);
+  };
+
   return (
     <div className="grid w-screen items-center justify-center">
       <div className="text-center px-[318px] mt-2">
@@ -45,6 +66,24 @@ function Testimonials() {
           );
         })}
       </div>
+      {showTestimonialLog ? (
+        <div ref={myRef}>
+          <DefaultForm
+            input1Data={{
+              label: "ESCREVA SEU NOME",
+              placeholder: "OPCIONAL",
+            }}
+            input2Data={{ label: "ASSUNTO", placeholder: "ex: Assunto" }}
+            textAreaData={{
+              label: "DEPOIMENTO",
+              placeholder: "clique aqui para escrever...",
+            }}
+            onSubmit={onSubmit}
+          />
+        </div>
+      ) : (
+        <AddTestimonialButton onClick={onButtonCLick} />
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import HelpForm from "./HelpForm";
+import DefaultForm from "../../components/default-form/DefaultForm";
 
 function Help() {
   return (
@@ -18,7 +18,21 @@ function Help() {
             cupidatat incididunt sint deserunt.
           </p>
         </div>
-        <HelpForm />
+        <DefaultForm
+          input1Data={{
+            label: "ESCREVA SEU NOME",
+            placeholder: "ex: Maria José da Silva",
+          }}
+          input2Data={{
+            label: "E-MAIL PARA CONTATO",
+            placeholder: "ex: mariajose@email.com",
+          }}
+          textAreaData={{
+            label: "ESCREVA SUA DÚVIDA",
+            placeholder: "clique aqui para escrever...",
+          }}
+          onSubmit={() => {}}
+        />
       </div>
     </>
   );
