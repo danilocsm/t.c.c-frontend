@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import GridObject from "../../components/grid-object/GridObject";
 import ItemsOptionsLayout from "../../components/items-options-layout/ItemsOptionsButtons";
-import ItemObject from "./ItemObject";
 
 type ItemsType = {
   title: string;
@@ -225,17 +225,15 @@ function Items() {
             }}
           />
         </div>
-        {/* <div className="flex flex-row items-center justify-center w-screen h-2/3">
-          <SearchBar />
-        </div> */}
         <div className="w-screen h-fit flex items-center justify-center md:pl-10 mb-4">
           <div className="grid grid-cols-4 w-screen items-center justify-center gap-4 px-4 mt-10 overflow-x-hidden">
             {itemsToRender.map((item) => {
               return (
-                <ItemObject
+                <GridObject
                   title={item.title}
                   image={item.image}
                   link={item.link}
+                  buttonText="clique aqui para comprar"
                 />
               );
             })}
