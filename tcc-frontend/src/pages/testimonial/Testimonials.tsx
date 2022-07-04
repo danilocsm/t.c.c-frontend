@@ -1,33 +1,35 @@
-import { useRef, useState } from "react";
+import { AxiosError } from "axios";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import DefaultForm from "../../components/default-form/DefaultForm";
+import LoadingIcon from "../../components/LoadingIcon";
+import { api } from "../../lib/api";
 import AddTestimonialButton from "./AddTestimonialButton";
 import TestimonialField from "./TestimonialField";
-
-const testimonials = [
-  {
-    author: "Pessoa 1",
-    description:
-      "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt quesse pariatur duis deserunt mollit dolore cillum minim tempor enim.Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididuntsint deserunt.",
-  },
-  {
-    author: "Pessoa 2",
-    description:
-      "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt quesse pariatur duis deserunt mollit dolore cillum minim tempor enim.Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididuntsint deserunt.",
-  },
-  {
-    author: "Pessoa 3",
-    description:
-      "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt quesse pariatur duis deserunt mollit dolore cillum minim tempor enim.Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididuntsint deserunt.",
-  },
-];
 
 const scrollToRef = (ref: any) => {
   window.scrollTo(0, ref.current.offsetTop);
 };
 
 function Testimonials() {
+  const [testimonials, setTestimonials] = useState([]);
+  const [isGettingTestimonials, setIsGettingTestimonials] = useState(true);
   const [showTestimonialLog, setShowTestimonialLog] = useState(false);
   const myRef = useRef(null);
+
+  const fetchTestimonials = async () => {
+    setIsGettingTestimonials(true);
+    try {
+      const response = await api.get("/testimonials/all");
+      setTestimonials(response.data);
+    } catch (error: AxiosError) {
+    } finally {
+      setIsGettingTestimonials(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
 
   const onButtonCLick = async () => {
     setShowTestimonialLog(true);
@@ -36,8 +38,24 @@ function Testimonials() {
     }, 10);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async (event: FormEvent, data: any) => {
+    event.preventDefault();
     setShowTestimonialLog(false);
+    console.log(data);
+    try {
+      await api.post("/testimonials/create", {
+        author: data.input1Value,
+        text: data.textAreaValue,
+      });
+    } catch (error: AxiosError) {
+      // console.log(error.response.data);
+      // do something
+    } finally {
+      fetchTestimonials();
+      await setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 10);
+    }
   };
 
   return (
@@ -57,14 +75,20 @@ function Testimonials() {
         </p>
       </div>
       <div className="w-scren flex flex-col overflow-x-hidden items-center justify-center gap-y-4 my-4">
-        {testimonials.map((testimonial) => {
-          return (
-            <TestimonialField
-              author={testimonial.author}
-              text={testimonial.description}
-            />
-          );
-        })}
+        {isGettingTestimonials ? (
+          <LoadingIcon />
+        ) : testimonials.length === 0 ? (
+          <h1>NENHUM DEPOIMENTO CADASTRADO</h1>
+        ) : (
+          testimonials.map((testimonial: any) => {
+            return (
+              <TestimonialField
+                author={testimonial.author}
+                text={testimonial.text}
+              />
+            );
+          })
+        )}
       </div>
       {showTestimonialLog ? (
         <div ref={myRef}>

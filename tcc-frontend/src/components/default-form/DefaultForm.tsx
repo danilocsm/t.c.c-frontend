@@ -4,26 +4,24 @@ interface DefaultFormProps {
   input1Data: { label: string; placeholder: string };
   input2Data: { label: string; placeholder: string };
   textAreaData: { label: string; placeholder: string };
-  onSubmit: () => void;
+  onSubmit: (event: FormEvent, data: any) => Promise<void>;
 }
 
 function DefaultForm({
   input1Data,
   input2Data,
   textAreaData,
-  onSubmit
+  onSubmit,
 }: DefaultFormProps) {
-  const [input1Value, setInput1Value] = useState("");
-  const [input2Value, setInput2Value] = useState("");
-  const [textAreaValue, setTextAreaValue] = useState("");
+  const [input1Value, setInput1Value] = useState<string>("");
+  const [input2Value, setInput2Value] = useState<string>("");
+  const [textAreaValue, setTextAreaValue] = useState<string>("");
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
+  const handleSubmit = async (event: FormEvent) => {
+    await onSubmit(event, { input1Value, textAreaValue });
     setInput1Value("");
     setInput2Value("");
     setTextAreaValue("");
-    onSubmit();
-    // send doubt to default email
   };
 
   return (

@@ -9,6 +9,7 @@ import Help from "./pages/help/Help";
 import Testimonials from "./pages/testimonial/Testimonials";
 import HomePage from "./pages/home/HomePage";
 import "./global.css";
+import NewActivity from "./pages/activity/NewActivity";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/about" element={<ProjectPage />} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/activities/detail/:id" element={<Activity />} />
+          <Route path="activities/new" element={<NewActivity />} />
           <Route path="/items" element={<Items />} />
           <Route path="/help" element={<Help />} />
           <Route path="/testimonials" element={<Testimonials />} />
