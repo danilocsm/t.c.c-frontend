@@ -1,12 +1,11 @@
-import { useNavigate } from "react-router";
-
 interface ItemObjectProps {
   title: string;
   image: string;
   link: string;
+  buttonText: string;
 }
 
-function ItemObject({ title, image, link }: ItemObjectProps) {
+function GridObject({ title, image, link, buttonText}: ItemObjectProps) {
 
   const onClick = () => {
     window.location.replace(link);
@@ -27,10 +26,10 @@ function ItemObject({ title, image, link }: ItemObjectProps) {
         className="md:w-[270px] md:h-[47px] w-fit h-fit rounded-[20px] bg-cerBlue text-center py-2 hover:bg-cerPurple transition-all ease-in-out focus:border-4 focus:border-cerPurple focus:outline-none text-[20px] focus:text-white"
         onClick={onClick}
       >
-        clique para comprar
+        {buttonText}
       </button>
     </div>
   );
 }
 
-export default ItemObject;
+export default GridObject;
