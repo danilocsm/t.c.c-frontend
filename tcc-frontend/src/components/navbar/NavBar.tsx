@@ -13,7 +13,7 @@ const navItems = [
 function NavBar() {
   return (
     <nav>
-      <div className="static flex flex-row justify-start gap-2 items-center w-screen h-[72px] bg-cerBlue mx-auto sm:px-6 opacity-100 rounded-b-[20px]">
+      <div className="static flex flex-row justify-start gap-2 items-center w-screen h-[72px] bg-cerBlue mx-auto sm:px-6 opacity-100 rounded-b-[20px] shadow-cerShadow">
         <HomeLogo />
         <div className="hidden md:block">
           <div className="flex flex-row items-center gap-7">

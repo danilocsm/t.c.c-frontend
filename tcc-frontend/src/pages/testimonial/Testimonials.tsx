@@ -23,7 +23,7 @@ function Testimonials() {
     try {
       const response = await api.get("/testimonials/all");
       setTestimonials(response.data);
-    } catch (error: AxiosError) {
+    } catch (error: AxiosError | any) {
     } finally {
       setIsGettingTestimonials(false);
     }
@@ -50,9 +50,7 @@ function Testimonials() {
         text: data.textAreaValue,
       });
       toast.success("Depoimento adicionado com sucesso!");
-    } catch (error: AxiosError) {
-      // console.log(error.response.data);
-      // do something
+    } catch (error: AxiosError | any) {
       toast.error(error.response.data.message);
     } finally {
       fetchTestimonials();
