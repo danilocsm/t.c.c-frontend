@@ -1,6 +1,23 @@
+import { FormEvent, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import DefaultForm from "../../components/default-form/DefaultForm";
+import { api } from "../../lib/api";
 
 function Help() {
+  const onSubmit = async (event: FormEvent, data: any) => {
+    event.preventDefault();
+    console.log(data);
+    try {
+      await api.post("/questions/create", {
+        contactEmail: data.input2Value,
+        text: data.textAreaValue,
+      });
+      toast.success("Dúvida enviada com sucesso");
+    } catch (error: AxiosError) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   return (
     <>
       <div className="w-100vw grid items-center justify-center">
@@ -31,8 +48,9 @@ function Help() {
             label: "ESCREVA SUA DÚVIDA",
             placeholder: "clique aqui para escrever...",
           }}
-          onSubmit={() => {}}
+          onSubmit={onSubmit}
         />
+        <Toaster position="top-right" />
       </div>
     </>
   );

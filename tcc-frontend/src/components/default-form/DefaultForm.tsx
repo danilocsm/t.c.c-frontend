@@ -18,7 +18,7 @@ function DefaultForm({
   const [textAreaValue, setTextAreaValue] = useState<string>("");
 
   const handleSubmit = async (event: FormEvent) => {
-    await onSubmit(event, { input1Value, textAreaValue });
+    await onSubmit(event, { input1Value, input2Value, textAreaValue });
     setInput1Value("");
     setInput2Value("");
     setTextAreaValue("");

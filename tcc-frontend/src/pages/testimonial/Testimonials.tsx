@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { FormEvent, useEffect, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import DefaultForm from "../../components/default-form/DefaultForm";
 import LoadingIcon from "../../components/LoadingIcon";
 import { api } from "../../lib/api";
@@ -47,9 +48,11 @@ function Testimonials() {
         author: data.input1Value,
         text: data.textAreaValue,
       });
+      toast.success("Depoimento adicionado com sucesso!");
     } catch (error: AxiosError) {
       // console.log(error.response.data);
       // do something
+      toast.error(error.response.data.message);
     } finally {
       fetchTestimonials();
       await setTimeout(() => {
@@ -108,6 +111,7 @@ function Testimonials() {
       ) : (
         <AddTestimonialButton onClick={onButtonCLick} />
       )}
+      <Toaster position="top-right" />
     </div>
   );
 }
