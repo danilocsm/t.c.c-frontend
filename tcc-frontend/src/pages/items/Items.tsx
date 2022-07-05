@@ -204,43 +204,36 @@ function Items() {
   }, [itemType]);
 
   return (
-    <>
-      <div className="w-100vw grid items-center justify-center">
-        <h1 className="text-center text-[36px] mt-2">UTENSÍLIOS</h1>
-        <div className="w-screen flex flex-row h-fit">
-          <p className="text-center text-[20px] px-[135px]">
-            Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
-            qui esse pariatur duis deserunt mollit dolore cillum minim tempor
-            enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut
-            voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex
-            duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt
-            mollit dolore cillum minim tempor enim. Elit aute irure tempor
-            cupidatat incididunt sint deserunt.
-          </p>
-        </div>
-        <div className="w-screen my-4">
-          <ItemsOptionsLayout
-            onOptionSelected={(selected: string) => {
-              setItemType(selected);
-            }}
-          />
-        </div>
-        <div className="w-screen h-fit flex items-center justify-center md:pl-10 mb-4">
-          <div className="grid grid-cols-4 w-screen items-center justify-center gap-4 px-4 mt-10 overflow-x-hidden">
-            {itemsToRender.map((item) => {
-              return (
-                <GridObject
-                  title={item.title}
-                  image={item.image}
-                  link={item.link}
-                  buttonText="clique aqui para comprar"
-                />
-              );
-            })}
-          </div>
+    <div className="w-100vw grid items-center justify-center overflow-x-hidden">
+      <h1 className="text-center text-[36px] mt-2">UTENSÍLIOS</h1>
+      <div className="w-screen flex flex-row h-1/7 justify-center items-center overflow-x-hidden">
+        <p className="text-center text-[20px] px-[135px]">
+          Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui
+          esse pariatur duis deserunt mollit dolore cillum minim tempor enim.
+        </p>
+      </div>
+      <div className="w-screen my-4">
+        <ItemsOptionsLayout
+          onOptionSelected={(selected: string) => {
+            setItemType(selected);
+          }}
+        />
+      </div>
+      <div className="w-screen h-fit flex items-center justify-center md:pl-10 mb-4">
+        <div className="grid md:grid-cols-4 grid-cols-2  w-screen items-center justify-center gap-4 px-4 mt-10 overflow-x-hidden">
+          {itemsToRender.map((item) => {
+            return (
+              <GridObject
+                title={item.title}
+                image={item.image}
+                link={item.link}
+                buttonText="clique aqui para comprar"
+              />
+            );
+          })}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
