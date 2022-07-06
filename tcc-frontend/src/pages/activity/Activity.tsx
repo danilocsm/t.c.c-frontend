@@ -1,79 +1,100 @@
-import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import toast, { LoaderIcon, Toaster } from "react-hot-toast";
+import { useLocation } from "react-router";
 import ActivityObject from "../../components/acitivty-object/ActivityObject";
+import BackToActivitiesButton from "../../components/activity-components/BackToActivitiesButton";
 import ActivityImages from "../../components/activity-images/ActivityImages";
 import Gallery from "../../components/gallery/Gallery";
-import SearchBar from "../../components/searchbar/SearchBar";
+import LoadingIcon from "../../components/LoadingIcon";
+import { api } from "../../lib/api";
 
-// TODO remove
-import DefaultObjectImage1 from "/public/images/defaultItem1.png";
-import DefaultObjectImage2 from "/public/images/defaultItem2.png";
-import DefaultObjectImage3 from "/public/images/defaultItem3.png";
+type ActivityDTO = {
+  id: string;
+  name: string;
+  description: string;
+  difficulty: string;
+  illnesses: string[];
+  images: string[];
+  itemsId: string[];
+};
 
 function Activity() {
-  const params = useParams();
-  const { id } = params;
+  const activity: ActivityDTO = useLocation().state as ActivityDTO;
+  const [activityObjects, setActivitytObjects] = useState<any[]>([]);
+  const [activityIllnesses, setActivitytIllnesses] = useState<any[]>([]);
+  const [isFecthingData, setIsFetchingData] = useState(false);
+
+  const fetchExtraData = async () => {
+    setIsFetchingData(true);
+    try {
+      const response1 = await api.get(
+        "/activities/" + activity.name + "/getObjects"
+      );
+      setActivitytObjects(response1.data);
+
+      const response2 = await api.get(
+        "activities/" + activity.name + "/getIllnesses"
+      );
+      setActivitytIllnesses(response2.data); //
+    } catch (error) {
+      toast.error("Falha ao carregar dados");
+    } finally {
+      setIsFetchingData(false);
+    }
+  };
 
   useEffect(() => {
-    // api.get(id)
+    const abortController = new AbortController();
+    fetchExtraData();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   return (
     <>
       <div className="w-100vw grid items-center justify-center">
-        <div className="w-screen flex flex-col items-center justify-center mt-4">
-          <h1 className="text-[30px] "> FAÇA SUA BUSCA </h1>
-        </div>
-        <div className="flex flex-row items-center justify-center w-screen h-1/5">
-          <SearchBar />
-        </div>
-        <h1 className="mt-4 mb-4 text-[36px] text-center"> Activity: {id}</h1>
+        <h1 className="mt-4 mb-4 text-[36px] text-center">
+          {" "}
+          {activity.name.toUpperCase()}
+        </h1>
         <div className="w-screen flex flex-col items-center justify-center text-center">
-          <p className="pl-2 pr-2">
-            Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
-            qui esse pariatur duis deserunt mollit dolore cillum minim tempor
-            enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut
-            voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex
-            duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt
-            mollit dolore cillum minim tempor enim. Elit aute irure tempor
-            cupidatat incididunt sint deserunt.
-          </p>
+          <p className="pl-2 pr-2">{activity.description}</p>
           <h2 className="mt-2">
             <span className="font-bold">Síndromes e doenças em foco:</span>{" "}
-            <span>
-              Sunt qui esse pariatur duis deserunt mollit dolore cillum minim
-              tempor enim. Elit aute irure tempor cupidatat incididunt sint
-              deserunt.
-            </span>
+            {isFecthingData ? (
+              <LoadingIcon />
+            ) : activity.illnesses ? (
+              activity.illnesses.map((illness) => {
+                return <span>illness</span>;
+              })
+            ) : (
+              <span>Sem doenças cadastradas</span>
+            )}
           </h2>
         </div>
-        <ActivityImages imagesArray={[]} />
+        <ActivityImages imagesArray={activity.images} />
         <div className="flex flex-col justify-center">
           <h2 className="mt-6 text-[30px] text-center">
             UTENSÍLIOS QUE PODEM AUXILIAR:
           </h2>
           <Gallery className={""}>
-            <ActivityObject
-              name={"Nome do objeto".toUpperCase()}
-              description={
-                "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. "
-              }
-              img={DefaultObjectImage1}
-            />
-            <ActivityObject
-              name={"Nome do objeto".toUpperCase()}
-              description={
-                "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. "
-              }
-              img={DefaultObjectImage2}
-            />
-            <ActivityObject
-              name={"Nome do objeto".toUpperCase()}
-              description={
-                "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. "
-              }
-              img={DefaultObjectImage3}
-            />
+            {isFecthingData ? (
+              <LoaderIcon />
+            ) : activityObjects.length > 0 ? (
+              activityObjects.map((object) => {
+                return (
+                  <ActivityObject
+                    name={object.name.toUpperCase()}
+                    description={object.description}
+                    img={object.imageUrl}
+                  />
+                );
+              })
+            ) : (
+              <h1>Sem utensílios cadastrados para esta atividade</h1>
+            )}
           </Gallery>
         </div>
         <h2 className="mt-4 text-[30px] text-center">
@@ -88,6 +109,8 @@ function Activity() {
           cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt
           sint deserunt.
         </p>
+        <BackToActivitiesButton />
+        <Toaster position="top-right" />
       </div>
     </>
   );

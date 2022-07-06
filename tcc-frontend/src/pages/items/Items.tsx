@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import GridObject from "../../components/grid-object/GridObject";
+import ItemGridObject from "../../components/grid-object/ItemGridObject";
 import ItemsOptionsLayout from "../../components/items-options-layout/ItemsOptionsButtons";
 import LoadingIcon from "../../components/LoadingIcon";
 import { api } from "../../lib/api";
@@ -33,6 +33,7 @@ function Items() {
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
     switch (itemType) {
       case "Brinquedos":
         fetchItems("TOY");
@@ -47,6 +48,10 @@ function Items() {
         fetchItems("FOOD");
         break;
     }
+
+    return () => {
+      abortController.abort();
+    };
   }, [itemType]);
 
   return (
@@ -76,7 +81,7 @@ function Items() {
           <div className="grid md:grid-cols-4 grid-cols-2  w-screen items-center justify-center gap-4 px-4 mt-10 overflow-x-hidden">
             {itemsToRender.map((item) => {
               return (
-                <GridObject
+                <ItemGridObject
                   title={item.name}
                   image={null}
                   link={item.link}

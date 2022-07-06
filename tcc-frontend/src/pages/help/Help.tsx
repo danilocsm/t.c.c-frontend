@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import DefaultForm from "../../components/default-form/DefaultForm";
@@ -13,7 +14,7 @@ function Help() {
         text: data.textAreaValue,
       });
       toast.success("Dúvida enviada com sucesso");
-    } catch (error: AxiosError) {
+    } catch (error: AxiosError | any) {
       toast.error(error.response.data.message);
     }
   };
