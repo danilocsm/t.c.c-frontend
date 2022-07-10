@@ -1,3 +1,4 @@
+
 interface ItemObjectProps {
   title: string;
   image: string | null;
@@ -12,14 +13,19 @@ function ItemGridObject({ title, image, link, buttonText }: ItemObjectProps) {
 
   return (
     <div className="flex flex-col md:w-[291px] md:h-[481px] w-fit h-fit items-center justify-center">
-      {image !== null ? (
-        <img
-          src={image}
-          className="scale-75 md:w-[260px] md:h-[211px] md:block hidden"
-        />
-      ) : (
-        <></>
-      )}
+      <div className="md:w-[260px] md:h-[211px] md:block hidden rounded-[20px] border-cerBlue border-[1px]">
+        {image ? (
+          <img
+            src={`data:image/png;base64, ${image}`}
+            className="scale-90 w-full h-full"
+          />
+        ) : (
+          <img
+            // src={}
+            className="scale-90 w-full h-full"
+          />
+        )}
+      </div>
       <span className="text-[32px]"> {title.toUpperCase()}</span>
       {/* <p className="text-[20px] text-center">
         Atividades que podem ser realizadas: exemplo1, exemplo2, exemplo3,

@@ -2,13 +2,13 @@ import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ItemGridObject from "../../components/grid-object/ItemGridObject";
-import ItemsOptionsLayout from "../../components/items-options-layout/ItemsOptionsButtons";
+import ItemsOptionsLayout from "../../components/item-components/ItemsOptionsButtons";
 import LoadingIcon from "../../components/LoadingIcon";
 import { api } from "../../lib/api";
 
 type ItemsType = {
   name: string;
-  // image: string;
+  image: string;
   link: string;
   itemType: string;
 };

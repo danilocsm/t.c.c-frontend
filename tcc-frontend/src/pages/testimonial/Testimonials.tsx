@@ -5,8 +5,8 @@ import CloseButton from "../../components/CloseButton";
 import DefaultForm from "../../components/default-form/DefaultForm";
 import LoadingIcon from "../../components/LoadingIcon";
 import { api } from "../../lib/api";
-import AddTestimonialButton from "./AddTestimonialButton";
-import TestimonialField from "./TestimonialField";
+import AddTestimonialButton from "../../components/testimonial-components/AddTestimonialButton";
+import TestimonialField from "../../components/testimonial-components/TestimonialField";
 
 const scrollToRef = (ref: any) => {
   window.scrollTo(0, ref.current.offsetTop);
@@ -15,7 +15,7 @@ const scrollToRef = (ref: any) => {
 function Testimonials() {
   const [testimonials, setTestimonials] = useState([]);
   const [isGettingTestimonials, setIsGettingTestimonials] = useState(true);
-  const [showTestimonialLog, setShowTestimonialLog] = useState(false);
+  const [showNewTestimonialForm, setShowNewTestimonialForm] = useState(false);
   const myRef = useRef(null);
 
   const fetchTestimonials = async () => {
@@ -34,7 +34,7 @@ function Testimonials() {
   }, []);
 
   const onButtonCLick = async () => {
-    setShowTestimonialLog(true);
+    setShowNewTestimonialForm(true);
     await setTimeout(() => {
       scrollToRef(myRef);
     }, 10);
@@ -42,7 +42,7 @@ function Testimonials() {
 
   const onSubmit = async (event: FormEvent, data: any) => {
     event.preventDefault();
-    setShowTestimonialLog(false);
+    setShowNewTestimonialForm(false);
     console.log(data);
     try {
       await api.post("/testimonials/create", {
@@ -92,7 +92,7 @@ function Testimonials() {
           })
         )}
       </div>
-      {showTestimonialLog ? (
+      {showNewTestimonialForm ? (
         <div ref={myRef} className="flex flex-row items-center justify-center">
           <DefaultForm
             input1Data={{
@@ -106,7 +106,7 @@ function Testimonials() {
             }}
             onSubmit={onSubmit}
           >
-            <CloseButton onClick={() => setShowTestimonialLog(false)} />
+            <CloseButton onClick={() => setShowNewTestimonialForm(false)} />
           </DefaultForm>
         </div>
       ) : (

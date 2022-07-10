@@ -3,7 +3,7 @@ import NavBarItem from "./NavBarItem";
 import DropMenu from "../DropMenu";
 
 const navItems = [
-  { title: "Utensílios", href:"/items"},
+  { title: "Utensílios", href: "/items" },
   { title: "Atividades", href: "/activities" },
   { title: "Projeto", href: "/about" },
   { title: "Depoimentos", href: "/testimonials" },
@@ -18,7 +18,13 @@ function NavBar() {
         <div className="hidden md:block">
           <div className="flex flex-row items-center gap-7">
             {navItems.map((navItem) => {
-              return <NavBarItem text={navItem.title} href={navItem.href} />;
+              return (
+                <NavBarItem
+                  text={navItem.title}
+                  href={navItem.href}
+                  key={navItem.title}
+                />
+              );
             })}
           </div>
         </div>
