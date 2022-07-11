@@ -45,6 +45,7 @@ function ActivityForm() {
         ...inputs,
         difficulty: difficulty,
         image: base64,
+        items: activityItems,
       }),
       {
         loading: "Cadastrando nova atividade...",

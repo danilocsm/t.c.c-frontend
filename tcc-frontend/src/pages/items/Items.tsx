@@ -83,7 +83,7 @@ function Items() {
               return (
                 <ItemGridObject
                   title={item.name}
-                  image={null}
+                  image={item.image}
                   link={item.link}
                   buttonText="clique aqui para comprar"
                 />

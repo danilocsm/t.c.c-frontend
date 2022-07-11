@@ -1,9 +1,5 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import UploadIcon from "./UploadIcon";
-
-interface ImagetInputProps {
-  onChange: (event: any) => void;
-}
 
 function ImageInput() {
   const [imagePreview, setImagePreview] = useState<any>("");

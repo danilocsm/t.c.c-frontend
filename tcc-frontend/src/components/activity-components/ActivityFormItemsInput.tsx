@@ -48,7 +48,7 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
     }
   };
 
-  const photoUpload = async (event: any) => {
+  const photoUpload = (event: any) => {
     event.preventDefault();
     const reader = new FileReader();
     const file = event.target.files[0];
@@ -72,13 +72,13 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
           className="rounded-full bg-cerGreen cursor-pointer w-[159px] h-[159px] flex flex-col items-center justify-center"
         >
           {imagePreview === "" ? (
-            <>
+            <div className="hover:animate-bounce flex flex-row items-center">
               <UploadIcon />
               <span className="font-semibold text-[14px]">
                 {" "}
                 Adicionar imagem
               </span>
-            </>
+            </div>
           ) : (
             <img src={imagePreview} className="w-full h-full rounded-full" />
           )}
@@ -86,10 +86,9 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
             type="file"
             id="imageUploadInput"
             className="hidden"
-            accept=".jpegm .png, .jpg"
-            name="image"
+            accept=".jpeg, .png, .jpg"
             onChange={photoUpload}
-            form="nestedForm"
+            name="image"
           />
         </label>
       </div>
@@ -114,7 +113,7 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
         <button
           onClick={handleClick}
           disabled={inputs.name === "" || inputs.description === ""}
-          className="rounded-[20px] bg-cerBlue w-full h-1/3 hover:bg-cerPurple hover:text-white focus:outline-none focus:bg-cerPurple focus:border-[1px] focus:border-white focus:text-white transition ease-in-out disabled:opacity-80 disabled:hover:bg-cerBlue disabled:hover:text-black"  
+          className="rounded-[20px] bg-cerBlue w-full h-1/3 hover:bg-cerPurple hover:text-white focus:outline-none focus:bg-cerPurple focus:border-[1px] focus:border-white focus:text-white transition ease-in-out disabled:opacity-80 disabled:hover:bg-cerBlue disabled:hover:text-black"
         >
           Adicionar
         </button>

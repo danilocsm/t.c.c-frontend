@@ -15,7 +15,7 @@ type ActivityDTO = {
   illnesses: string;
   image: string;
   observations: string;
-  itemsId: string[];
+  items: any[];
 };
 
 function Activity() {
