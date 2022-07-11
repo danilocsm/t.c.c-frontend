@@ -3,15 +3,32 @@ import toast, { Toaster } from "react-hot-toast";
 import { api } from "../../lib/api";
 import ImageInput from "../ImageInput";
 import ActivityFormDifficulty from "./ActivityFormDifficulty";
+import ActivityFormItemsInput from "./ActivityFormItemsInput";
+
+type FormStringInputs = {
+  name: string;
+  illnesses: string;
+  description: string;
+  observations: string;
+};
+
+type FormActiviyItemInput = {
+  image: string;
+  name: string;
+  description: string;
+};
 
 function ActivityForm() {
-  const [inputs, setInputs] = useState<{
-    name: string;
-    illnesses: string;
-    description: string;
-    observations: string;
-  }>({ name: "", illnesses: "", description: "", observations: "" });
+  const [inputs, setInputs] = useState<FormStringInputs>({
+    name: "",
+    illnesses: "",
+    description: "",
+    observations: "",
+  });
   const [difficulty, setDifficulty] = useState("");
+  const [activityItems, setActivityItems] = useState<FormActiviyItemInput[]>(
+    []
+  );
   const [base64, setBase64] = useState<string>();
 
   const handleChange = (event: any) => {
@@ -64,17 +81,18 @@ function ActivityForm() {
       >
         <span className="text-[20px] self-start">NOME DA ATIVIDADE</span>
         <input
+          autoFocus={true}
           type="text"
           name="name"
           onChange={handleChange}
           value={inputs.name || ""}
-          className="md:w-[1030px] md:h-[61px] bg-white rounded-[20px] border-[1px] border-solid border-[#7187f5] p-2"
+          className="md:w-[1030px] md:h-[61px] bg-white rounded-[20px] border-[1px] border-solid border-cerBlue p-2"
         />
         <span className="text-[20px] self-start">
           SÍNDROMES E DOENÇAS EM FOCO:
         </span>
         <textarea
-          className="bg-white rounded-[20px] resize-none p-2 md:w-[1030px] md:h-[110px] border-[1px] border-solid border-[#7187f5]"
+          className="bg-white rounded-[20px] resize-none p-2 md:w-[1030px] md:h-[110px] border-[1px] border-solid border-cerBlue"
           name="illnesses"
           value={inputs.illnesses || ""}
           onChange={handleChange}
@@ -82,7 +100,7 @@ function ActivityForm() {
         />
         <span className="text-[20px] self-start">Descrição:</span>
         <textarea
-          className="bg-white rounded-[20px] resize-none p-2 md:w-[1030px] md:h-[225px] border-[1px] border-solid border-[#7187f5]"
+          className="bg-white rounded-[20px] resize-none p-2 md:w-[1030px] md:h-[225px] border-[1px] border-solid border-cerBlue"
           name="description"
           value={inputs.description || ""}
           onChange={handleChange}
@@ -100,10 +118,10 @@ function ActivityForm() {
         </span>
         <ImageInput />
         <span className="text-[20px] self-start">INSERIR UTENSÍLIOS:</span>
-        {/* <ItemInput /> */}
+        <ActivityFormItemsInput setItems={setActivityItems} />
         <span className="text-[20px] self-start">OBSERVAÇÕES:</span>
         <textarea
-          className="bg-white rounded-[20px] resize-none p-2 md:w-[1030px] md:h-[225px] border-[1px] border-solid border-[#7187f5]"
+          className="bg-white rounded-[20px] resize-none p-2 md:w-[1030px] md:h-[225px] border-[1px] border-solid border-cerBlue"
           name="observations"
           value={inputs.observations || ""}
           onChange={handleChange}
