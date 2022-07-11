@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { api } from "../../lib/api";
-import ImageInput from "../ImageInput";
+import ActivityImageInput from "./ActivityImageInput";
 import ActivityFormDifficulty from "./ActivityFormDifficulty";
 import ActivityFormItemsInput from "./ActivityFormItemsInput";
 
@@ -117,7 +117,7 @@ function ActivityForm() {
         <span className="text-[20px] self-start">
           INSERIR IMAGENS PASSO-A-PASSO:
         </span>
-        <ImageInput />
+        <ActivityImageInput />
         <span className="text-[20px] self-start">INSERIR UTENSÍLIOS:</span>
         <ActivityFormItemsInput setItems={setActivityItems} />
         <span className="text-[20px] self-start">OBSERVAÇÕES:</span>

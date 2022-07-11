@@ -1,7 +1,7 @@
 import { useState } from "react";
-import UploadIcon from "./UploadIcon";
+import UploadIcon from "../UploadIcon";
 
-function ImageInput() {
+function ACtivityImageInput() {
   const [imagePreview, setImagePreview] = useState<any>("");
 
   const photoUpload = (event: any) => {
@@ -55,4 +55,4 @@ function ImageInput() {
   );
 }
 
-export default ImageInput;
+export default ACtivityImageInput;
