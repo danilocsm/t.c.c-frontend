@@ -3,12 +3,18 @@ import { useEffect, useState } from "react";
 
 interface ItemsOptionsLayoutProps {
   onOptionSelected: (selected: string) => void;
+  autoSelectFirst: boolean;
 }
 
 const options = ["Brinquedos", "Mobiliário", "Vestuário", "Alimentação"];
 
-function ItemsOptionsLayout({ onOptionSelected }: ItemsOptionsLayoutProps) {
-  const [selected, setSelected] = useState<string>("Brinquedos");
+function ItemsOptionsLayout({
+  onOptionSelected,
+  autoSelectFirst,
+}: ItemsOptionsLayoutProps) {
+  const [selected, setSelected] = useState<string>(
+    autoSelectFirst ? "Brinquedos" : ""
+  );
 
   useEffect(() => {
     onOptionSelected(selected);

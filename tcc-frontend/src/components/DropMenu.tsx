@@ -32,22 +32,23 @@ function DropMenu(props: DropMenuProps) {
           <Menu.Items className="absolute top-[50px] md:left-[-35px] w-[164px] h-fit rounded-md bg-cerBlue focus:outline-none left-[-60px]">
             {props.items.map((item) => {
               return (
-                <>
-                  <div className="w-full h-1/4 pt-2 border-b-[1px] border-zinc-100">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          className={`${
-                            active ? "underline underline-offset-2" : ""
-                          } flex flex-col items-center hover:opacity-20 text-white font-grandstander font-bold`}
-                          href={item.href}
-                        >
-                          {item.title}
-                        </a>
-                      )}
-                    </Menu.Item>
-                  </div>
-                </>
+                <div
+                  className="w-full h-1/4 pt-2 border-b-[1px] border-zinc-100"
+                  key={item.title}
+                >
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        className={`${
+                          active ? "underline underline-offset-2" : ""
+                        } flex flex-col items-center hover:opacity-20 text-white font-grandstander font-bold`}
+                        href={item.href}
+                      >
+                        {item.title}
+                      </a>
+                    )}
+                  </Menu.Item>
+                </div>
               );
             })}
           </Menu.Items>

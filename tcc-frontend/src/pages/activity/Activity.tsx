@@ -1,93 +1,74 @@
-import { useEffect } from "react";
-import { useParams } from "react-router";
-import ActivityObject from "../../components/acitivty-object/ActivityObject";
-import ActivityImages from "../../components/activity-images/ActivityImages";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { useLocation } from "react-router";
+import ActivityObject from "../../components/activity-components/ActivityObject";
+import BackToActivitiesButton from "../../components/activity-components/BackToActivitiesButton";
 import Gallery from "../../components/gallery/Gallery";
-import SearchBar from "../../components/searchbar/SearchBar";
+import LoadingIcon from "../../components/LoadingIcon";
+import { api } from "../../lib/api";
 
-// TODO remove
-import DefaultObjectImage1 from "/public/images/defaultItem1.png";
-import DefaultObjectImage2 from "/public/images/defaultItem2.png";
-import DefaultObjectImage3 from "/public/images/defaultItem3.png";
+type ActivityDTO = {
+  id: string;
+  name: string;
+  description: string;
+  difficulty: string;
+  illnesses: string;
+  image: string;
+  observations: string;
+  items: any[];
+};
 
 function Activity() {
-  const params = useParams();
-  const { id } = params;
-
-  useEffect(() => {
-    // api.get(id)
-  }, []);
+  const activity: ActivityDTO = useLocation().state as ActivityDTO;
 
   return (
     <>
       <div className="w-100vw grid items-center justify-center">
-        <div className="w-screen flex flex-col items-center justify-center mt-4">
-          <h1 className="text-[30px] "> FAÇA SUA BUSCA </h1>
-        </div>
-        <div className="flex flex-row items-center justify-center w-screen h-1/5">
-          <SearchBar />
-        </div>
-        <h1 className="mt-4 mb-4 text-[36px] text-center"> Activity: {id}</h1>
+        <h1 className="mt-4 mb-4 text-[36px] text-center">
+          {activity.name.toUpperCase()}
+        </h1>
         <div className="w-screen flex flex-col items-center justify-center text-center">
-          <p className="pl-2 pr-2">
-            Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
-            qui esse pariatur duis deserunt mollit dolore cillum minim tempor
-            enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut
-            voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex
-            duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt
-            mollit dolore cillum minim tempor enim. Elit aute irure tempor
-            cupidatat incididunt sint deserunt.
-          </p>
+          <p className="pl-2 pr-2">{activity.description}</p>
           <h2 className="mt-2">
             <span className="font-bold">Síndromes e doenças em foco:</span>{" "}
-            <span>
-              Sunt qui esse pariatur duis deserunt mollit dolore cillum minim
-              tempor enim. Elit aute irure tempor cupidatat incididunt sint
-              deserunt.
-            </span>
+            {activity.illnesses ? (
+              <span>{activity.illnesses}</span>
+            ) : (
+              <span>Sem doenças cadastradas</span>
+            )}
           </h2>
         </div>
-        <ActivityImages imagesArray={[]} />
+        <div className="flex w-screen items-center justify-center">
+          <img src={`data:image/png;base64,${activity.image}`} />
+        </div>
         <div className="flex flex-col justify-center">
           <h2 className="mt-6 text-[30px] text-center">
             UTENSÍLIOS QUE PODEM AUXILIAR:
           </h2>
           <Gallery className={""}>
-            <ActivityObject
-              name={"Nome do objeto".toUpperCase()}
-              description={
-                "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. "
-              }
-              img={DefaultObjectImage1}
-            />
-            <ActivityObject
-              name={"Nome do objeto".toUpperCase()}
-              description={
-                "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. "
-              }
-              img={DefaultObjectImage2}
-            />
-            <ActivityObject
-              name={"Nome do objeto".toUpperCase()}
-              description={
-                "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. "
-              }
-              img={DefaultObjectImage3}
-            />
+            {activity.items.length > 0 ? (
+              activity.items.map((object) => {
+                return (
+                  <ActivityObject
+                    name={object.name.toUpperCase()}
+                    description={object.description}
+                    img={object.image}
+                  />
+                );
+              })
+            ) : (
+              <h1>Sem utensílios cadastrados para esta atividade</h1>
+            )}
           </Gallery>
         </div>
         <h2 className="mt-4 text-[30px] text-center">
           OBSERVAÇÕES IMPORTANTES:
         </h2>
         <p className="mt-2 mb-4 text-center pl-2 pr-2">
-          Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui
-          esse pariatur duis deserunt mollit dolore cillum minim tempor enim.
-          Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate
-          aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis
-          id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore
-          cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt
-          sint deserunt.
+          {activity.observations}
         </p>
+        <BackToActivitiesButton />
+        <Toaster position="top-right" />
       </div>
     </>
   );

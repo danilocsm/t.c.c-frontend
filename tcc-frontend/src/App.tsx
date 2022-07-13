@@ -9,6 +9,7 @@ import Help from "./pages/help/Help";
 import Testimonials from "./pages/testimonial/Testimonials";
 import HomePage from "./pages/home/HomePage";
 import "./global.css";
+import HealthAgentPage from "./pages/admin/HealthAgent";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/items" element={<Items />} />
           <Route path="/help" element={<Help />} />
           <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/admins" element={<HealthAgentPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

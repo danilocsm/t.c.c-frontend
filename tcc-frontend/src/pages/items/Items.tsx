@@ -1,236 +1,89 @@
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import GridObject from "../../components/grid-object/GridObject";
-import ItemsOptionsLayout from "../../components/items-options-layout/ItemsOptionsButtons";
+import toast, { Toaster } from "react-hot-toast";
+import ItemGridObject from "../../components/grid-object/ItemGridObject";
+import ItemsOptionsLayout from "../../components/item-components/ItemsOptionsButtons";
+import LoadingIcon from "../../components/LoadingIcon";
+import { api } from "../../lib/api";
 
 type ItemsType = {
-  title: string;
+  name: string;
   image: string;
   link: string;
-};
-
-const fetchToys = () => {
-  const items = [
-    {
-      title: "Objeto 1",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Objeto 2",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Objeto 3",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Objeto 4",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Objeto 5",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Objeto 6",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-  ];
-  return items;
-};
-
-const fetchMobil = () => {
-  const items = [
-    {
-      title: "Mobiliário 1",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Mobiliário 2",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Mobiliário 3",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Mobiliário 4",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Mobiliário 5",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Mobiliário 6",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-  ];
-  return items;
-};
-
-const fetchFoods = () => {
-  const items = [
-    {
-      title: "Comida 1",
-      link: "http://www.google.com",
-      image:
-        "https://www.cozinhandopara2ou1.com.br/wp-content/uploads/2019/12/ReceitasParaFerias_CozinhandoPara2ou1.jpg",
-    },
-    {
-      title: "Comida 2",
-      link: "http://www.google.com",
-      image:
-        "https://www.cozinhandopara2ou1.com.br/wp-content/uploads/2019/12/ReceitasParaFerias_CozinhandoPara2ou1.jpg",
-    },
-    {
-      title: "Comida 3",
-      link: "http://www.google.com",
-      image:
-        "https://www.cozinhandopara2ou1.com.br/wp-content/uploads/2019/12/ReceitasParaFerias_CozinhandoPara2ou1.jpg",
-    },
-    {
-      title: "Comida 4",
-      link: "http://www.google.com",
-      image:
-        "https://www.cozinhandopara2ou1.com.br/wp-content/uploads/2019/12/ReceitasParaFerias_CozinhandoPara2ou1.jpg",
-    },
-    {
-      title: "Comida 5",
-      link: "http://www.google.com",
-      image:
-        "https://www.cozinhandopara2ou1.com.br/wp-content/uploads/2019/12/ReceitasParaFerias_CozinhandoPara2ou1.jpg",
-    },
-    {
-      title: "Comida 6",
-      link: "http://www.google.com",
-      image:
-        "https://www.cozinhandopara2ou1.com.br/wp-content/uploads/2019/12/ReceitasParaFerias_CozinhandoPara2ou1.jpg",
-    },
-  ];
-  return items;
-};
-const fetchCloath = () => {
-  const items = [
-    {
-      title: "Roupa 1",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Roupa 2",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Roupa 3",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Roupa 4",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Roupa 5",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-    {
-      title: "Roupa 6",
-      link: "http://www.google.com",
-      image:
-        "https://img.freepik.com/vetores-gratis/conjunto-de-brinquedos-infantis_74855-7019.jpg?size=626&ext=jpg",
-    },
-  ];
-  return items;
+  itemType: string;
 };
 
 function Items() {
   const [itemType, setItemType] = useState<string>("");
   const [itemsToRender, setItemsToRender] = useState<ItemsType[]>([]);
+  const [isGettingItems, setIsGettingItems] = useState<boolean>(false);
+
+  const fetchItems = async (filter: string) => {
+    setIsGettingItems(true);
+    try {
+      const response = await api.get("/items/all/" + filter);
+      setItemsToRender(response.data);
+      toast.success("Items recuperados com sucesso");
+    } catch (error: AxiosError | any) {
+      console.log(error.response.data.message);
+      toast.error("Falha recuperando os itens: " + error.response.data.message);
+    } finally {
+      setIsGettingItems(false);
+    }
+  };
 
   useEffect(() => {
-    setItemsToRender(fetchToys());
-  }, []);
-
-  useEffect(() => {
-    // loading
+    const abortController = new AbortController();
     switch (itemType) {
       case "Brinquedos":
-        setItemsToRender(fetchToys());
+        fetchItems("TOY");
         break;
       case "Mobiliário":
-        setItemsToRender(fetchMobil());
+        fetchItems("ACCESSORY");
         break;
       case "Vestuário":
-        setItemsToRender(fetchCloath());
+        fetchItems("CLOATHING");
         break;
       case "Alimentação":
-        setItemsToRender(fetchFoods());
+        fetchItems("FOOD");
         break;
     }
-    // console.log(itemsToRender, itemType);
-    // loadingDone
+
+    return () => {
+      abortController.abort();
+    };
   }, [itemType]);
 
   return (
-    <>
-      <div className="w-100vw grid items-center justify-center">
-        <h1 className="text-center text-[36px] mt-2">UTENSÍLIOS</h1>
-        <div className="w-screen flex flex-row h-fit">
-          <p className="text-center text-[20px] px-[135px]">
-            Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
-            qui esse pariatur duis deserunt mollit dolore cillum minim tempor
-            enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut
-            voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex
-            duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt
-            mollit dolore cillum minim tempor enim. Elit aute irure tempor
-            cupidatat incididunt sint deserunt.
-          </p>
-        </div>
-        <div className="w-screen my-4">
-          <ItemsOptionsLayout
-            onOptionSelected={(selected: string) => {
-              setItemType(selected);
-            }}
-          />
-        </div>
-        <div className="w-screen h-fit flex items-center justify-center md:pl-10 mb-4">
-          <div className="grid grid-cols-4 w-screen items-center justify-center gap-4 px-4 mt-10 overflow-x-hidden">
+    <div className="w-100vw grid items-center justify-center overflow-x-hidden">
+      <h1 className="text-center text-[36px] mt-2">UTENSÍLIOS</h1>
+      <div className="w-screen flex flex-row h-1/7 justify-center items-center overflow-x-hidden">
+        <p className="text-center text-[20px] px-[135px]">
+          Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui
+          esse pariatur duis deserunt mollit dolore cillum minim tempor enim.
+        </p>
+      </div>
+      <div className="w-screen my-4">
+        <ItemsOptionsLayout
+          onOptionSelected={(selected: string) => {
+            setItemType(selected);
+          }}
+          autoSelectFirst={true}
+        />
+      </div>
+      <div className="w-screen h-fit flex items-center justify-center md:pl-10 mb-4">
+        {isGettingItems ? (
+          <div className="justify-self-center mt-6">
+            <LoadingIcon />
+          </div>
+        ) : itemsToRender.length === 0 ? (
+          <h1 className="text-[36px] mt-4">{`Nenhum item do tipo ${itemType} cadastrado.`}</h1>
+        ) : (
+          <div className="grid md:grid-cols-4 grid-cols-2  w-screen items-center justify-center gap-4 px-4 mt-10 overflow-x-hidden">
             {itemsToRender.map((item) => {
               return (
-                <GridObject
-                  title={item.title}
+                <ItemGridObject
+                  title={item.name}
                   image={item.image}
                   link={item.link}
                   buttonText="clique aqui para comprar"
@@ -238,9 +91,10 @@ function Items() {
               );
             })}
           </div>
-        </div>
+        )}
       </div>
-    </>
+      <Toaster position="top-right" />
+    </div>
   );
 }
 
