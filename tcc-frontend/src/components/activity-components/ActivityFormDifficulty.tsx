@@ -1,5 +1,6 @@
 import { RadioGroup } from "@headlessui/react";
 import { useEffect, useState } from "react";
+import CheckIcon from "../CheckIcon";
 
 interface ActivityFormDifficultyProps {
   onSelected: (selected: string) => void;
@@ -46,9 +47,16 @@ function ActivityFormDifficulty({ onSelected }: ActivityFormDifficultyProps) {
             relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
               }
             >
-              <div className="w-full flex items-center justify-center text=[16px]">
-                {option}
-              </div>
+              {({ active, checked }) => (
+                <div className="flex w-full items-center justify-between">
+                  <div className="text-[20px]">{option}</div>
+                  {checked && (
+                    <div className="shrink-0 text-black">
+                      <CheckIcon className="h-6 w-6" />
+                    </div>
+                  )}
+                </div>
+              )}
             </RadioGroup.Option>
           );
         })}

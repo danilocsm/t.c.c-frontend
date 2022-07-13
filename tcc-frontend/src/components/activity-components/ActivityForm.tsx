@@ -120,7 +120,7 @@ function ActivityForm() {
         <span className="text-[20px] self-start">
           INSERIR IMAGENS PASSO-A-PASSO:
         </span>
-        <ActivityImageInput isFormSent={isSendingData}/>
+        <ActivityImageInput isFormSent={isSendingData} />
         <span className="text-[20px] self-start">INSERIR UTENSÍLIOS:</span>
         <ActivityFormItemsInput setItems={setActivityItems} />
         <Toaster position="top-right" />

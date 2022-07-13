@@ -1,6 +1,9 @@
 import { useState } from "react";
 import ActivityForm from "../../components/activity-components/ActivityForm";
+import ActivitiesDashboard from "../../components/admin-components/ActivitiesDashboard";
 import AgentBio from "../../components/admin-components/AgentBio";
+import DoubtsDashboard from "../../components/admin-components/DoubtsDashboard";
+import ItemsDashboard from "../../components/admin-components/ItemsDashboard";
 import OptionsLayout from "../../components/admin-components/OptionsLayout";
 import ItemForm from "../../components/item-components/ItemForm";
 
@@ -19,14 +22,13 @@ function HealthAgentPage() {
         }}
       />
       <div className="mt-4 w-screen h-auto flex items-center justify-center">
-        {(optionSelected === "NOVA ATIVIDADE" && <ActivityForm />) ||
+        {(optionSelected === "DÚVIDAS" && <DoubtsDashboard />) ||
+          (optionSelected === "NOVA ATIVIDADE" && <ActivityForm />) ||
           (optionSelected === "NOVO UTENSÍLIO" && <ItemForm />) ||
           (optionSelected === "LISTA DE ATIVIDADES" && (
-            <h1>Lista de atividades</h1>
+            <ActivitiesDashboard />
           )) ||
-          (optionSelected === "LISTA DE UTENSÍLIOS" && (
-            <h1>Lista de utensílios</h1>
-          ))}
+          (optionSelected === "LISTA DE UTENSÍLIOS" && <ItemsDashboard />)}
       </div>
     </div>
   );

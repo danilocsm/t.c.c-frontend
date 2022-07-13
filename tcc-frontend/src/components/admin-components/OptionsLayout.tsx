@@ -1,11 +1,13 @@
 import { RadioGroup } from "@headlessui/react";
 import { useEffect, useState } from "react";
+import CheckIcon from "../CheckIcon";
 
 interface OptionsLayoutProps {
   onSelected: (selected: string) => void;
 }
 
 const options = [
+  "DÚVIDAS",
   "NOVA ATIVIDADE",
   "NOVO UTENSÍLIO",
   "LISTA DE ATIVIDADES",
@@ -13,18 +15,19 @@ const options = [
 ];
 
 function OptionsLayout({ onSelected }: OptionsLayoutProps) {
-  const [selected, setSelected] = useState<string>("NOVA ATIVIDADE");
+  const [selected, setSelected] = useState<string>("DÚVIDAS");
 
   useEffect(() => {
     onSelected(selected);
   }, [selected]);
+
   return (
     <RadioGroup
       value={selected}
       onChange={setSelected}
       className="w-screen h-fit px-6 mt-6"
     >
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 auto-rows-auto gap-2">
         {options.map((option) => {
           return (
             <RadioGroup.Option
@@ -37,12 +40,19 @@ function OptionsLayout({ onSelected }: OptionsLayoutProps) {
                     : ""
                 }
           ${checked ? "bg-cerPurple" : "bg-cerBlue"}
-            relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+            relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none col-span-2`
               }
             >
-              <div className="w-full flex items-center justify-center text=[16px]">
-                {option}
-              </div>
+              {({ active, checked }) => (
+                <div className="flex w-full items-center justify-between">
+                  <div className="text-[20px]">{option}</div>
+                  {checked && (
+                    <div className="shrink-0 text-black">
+                      <CheckIcon className="h-6 w-6" />
+                    </div>
+                  )}
+                </div>
+              )}
             </RadioGroup.Option>
           );
         })}

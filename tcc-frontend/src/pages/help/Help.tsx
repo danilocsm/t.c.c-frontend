@@ -10,6 +10,7 @@ function Help() {
     console.log(data);
     try {
       await api.post("/questions/create", {
+        name: data.input1Value,
         contactEmail: data.input2Value,
         text: data.textAreaValue,
       });

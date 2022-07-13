@@ -30,6 +30,7 @@ function ItemForm() {
   const [isSendingData, setIsSendingData] = useState<boolean>(false);
 
   const handleSubmit = async (event: any) => {
+    // TODO implementar envio de email 
     event.preventDefault();
     setIsSendingData(true);
     try {
@@ -89,7 +90,7 @@ function ItemForm() {
       <form
         onChange={onChange}
         onSubmit={handleSubmit}
-        className="w-screen flex flex-row h-full"
+        className="w-screen flex flex-row h-full items-center justify-center"
         id="itemForm"
       >
         <div className="w-1/4 flex flex-col items-center justify-center gap-y-4">
@@ -159,7 +160,7 @@ function ItemForm() {
           />
         </div>
       </form>
-      <div className="w-screen flex flex-col items-center justify-center">
+      <div className="w-screen flex flex-col items-center justify-center pl-4">
         <label className="text-[20px]"> SELECIONE O TIPO:</label>
         <ItemsOptionsButtons
           onOptionSelected={(selected) => setItemType(selected)}

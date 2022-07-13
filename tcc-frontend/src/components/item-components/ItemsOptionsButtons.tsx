@@ -1,5 +1,6 @@
 import { RadioGroup } from "@headlessui/react";
 import { useEffect, useState } from "react";
+import CheckIcon from "../CheckIcon";
 
 interface ItemsOptionsLayoutProps {
   onOptionSelected: (selected: string) => void;
@@ -30,6 +31,7 @@ function ItemsOptionsLayout({
         {options.map((option) => {
           return (
             <RadioGroup.Option
+              key={option}
               value={option}
               className={({ active, checked }) =>
                 `${
@@ -42,37 +44,20 @@ function ItemsOptionsLayout({
               }
             >
               {({ active, checked }) => (
-                <>
-                  <div className="flex w-full items-center justify-between">
-                    <div className="text-[20px]">{option}</div>
-                    {checked && (
-                      <div className="shrink-0 text-black">
-                        <CheckIcon className="h-6 w-6" />
-                      </div>
-                    )}
-                  </div>
-                </>
+                <div className="flex w-full items-center justify-between">
+                  <div className="text-[20px]">{option}</div>
+                  {checked && (
+                    <div className="shrink-0 text-black">
+                      <CheckIcon className="h-6 w-6" />
+                    </div>
+                  )}
+                </div>
               )}
             </RadioGroup.Option>
           );
         })}
       </div>
     </RadioGroup>
-  );
-}
-
-function CheckIcon(props: any) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <circle cx={12} cy={12} r={12} fill="#000" opacity="0.2" />
-      <path
-        d="M7 13l3 3 7-7"
-        stroke="#000000"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }
 
