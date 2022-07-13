@@ -4,6 +4,7 @@ import { api } from "../../lib/api";
 import ActivityImageInput from "./ActivityImageInput";
 import ActivityFormDifficulty from "./ActivityFormDifficulty";
 import ActivityFormItemsInput from "./ActivityFormItemsInput";
+import LoadingIcon from "../LoadingIcon";
 
 type FormStringInputs = {
   name: string;
@@ -30,6 +31,7 @@ function ActivityForm() {
     []
   );
   const [base64, setBase64] = useState<string>();
+  const [isSendingData, setIsSendingData] = useState<boolean>(false);
 
   const handleChange = (event: any) => {
     const name = event.target.name;
@@ -39,20 +41,20 @@ function ActivityForm() {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    console.log(inputs);
-    toast.promise(
-      api.post("/activities/create", {
+    setIsSendingData(true);
+    try {
+      await api.post("/activities/create", {
         ...inputs,
         difficulty: difficulty,
         image: base64,
         items: activityItems,
-      }),
-      {
-        loading: "Cadastrando nova atividade...",
-        success: "Atividade cadastrada com sucesso!",
-        error: "Erro ao tentar cadastrar nova atividade.",
-      }
-    );
+      });
+      toast.success("Atividade cadastrada com sucesso!");
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    } finally {
+      setIsSendingData(false);
+    }
     setInputs({ name: "", illnesses: "", description: "", observations: "" });
   };
 
@@ -62,9 +64,9 @@ function ActivityForm() {
   };
 
   const onChange = (event: any) => {
+    if (event.target !== "input#dropzone-file") return;
     if (event.target.files === undefined || event.target.files === null) return;
     let file = event?.target?.files[0];
-    console.log(file);
     if (file) {
       const reader = new FileReader();
       reader.onload = _handleReaderLoaded;
@@ -76,6 +78,7 @@ function ActivityForm() {
     <div className="flex flex-col items-center justifty-center w-screen h-fit px-4 overflow-hidden">
       <h1 className="text-[36px] my-2">CADASTRO DE UMA ATIVIDADE</h1>
       <form
+        id="activtyForm"
         className="w-[1030px] flex flex-col items-center justify-center gap-y-4"
         onSubmit={handleSubmit}
         onChange={(event) => onChange(event)}
@@ -117,9 +120,10 @@ function ActivityForm() {
         <span className="text-[20px] self-start">
           INSERIR IMAGENS PASSO-A-PASSO:
         </span>
-        <ActivityImageInput />
+        <ActivityImageInput isFormSent={isSendingData}/>
         <span className="text-[20px] self-start">INSERIR UTENSÍLIOS:</span>
         <ActivityFormItemsInput setItems={setActivityItems} />
+        <Toaster position="top-right" />
         <span className="text-[20px] self-start">OBSERVAÇÕES:</span>
         <textarea
           className="bg-white rounded-[20px] resize-none p-2 md:w-[1030px] md:h-[225px] border-[1px] border-solid border-cerBlue"
@@ -128,13 +132,18 @@ function ActivityForm() {
           onChange={handleChange}
         />
         <button
+          disabled={
+            inputs.name === "" ||
+            inputs.description === "" ||
+            inputs.illnesses === "" ||
+            inputs.observations === ""
+          }
           type="submit"
-          className="bg-cerBlue text-white rounded-[20px] md:w-[566px] md:h-[61px] mb-4 hover:bg-cerPurple"
+          className="my-4 bg-cerBlue text-white rounded-[20px] md:w-[566px] md:h-[61px] mb-4 hover:bg-cerPurple flex items-center justify-center disabled:opacity-70 disabled:hover:bg-cerBlue"
         >
-          CADASTRAR
+          {(isSendingData && <LoadingIcon />) || `CADASTRAR`}
         </button>
       </form>
-      <Toaster position="top-right" />
     </div>
   );
 }

@@ -1,31 +1,51 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { api } from "../../lib/api";
+import LoadingIcon from "../LoadingIcon";
 import UploadIcon from "../UploadIcon";
+import ItemsOptionsButtons from "./ItemsOptionsButtons";
+
+const parseItemType = (itemType: string) => {
+  switch (itemType) {
+    case "BRINQUEDOS":
+      return "TOY";
+    case "MOBILIÁRIO":
+      return "ACCESSORY";
+    case "VESTUÁRIO":
+      return "CLOATHING";
+    case "ALIMENTAÇÃO":
+      return "FOOD";
+  }
+};
 
 function ItemForm() {
   const [inputs, setInputs] = useState<{
     name: string;
-    price: number;
+    price: string;
     link: string;
-  }>({ name: "", price: 0, link: "" });
+  }>({ name: "", price: "", link: "" });
+  const [itemType, setItemType] = useState("");
   const [imagePreview, setImagePreview] = useState<any>("");
   const [base64, setBase64] = useState<string>("");
+  const [isSendingData, setIsSendingData] = useState<boolean>(false);
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
-    toast.promise(
-      api.post("/items/create", {
+    setIsSendingData(true);
+    try {
+      const response = await api.post("/items/create", {
         ...inputs,
         image: base64,
-      }),
-      {
-        loading: "Cadastrando novo utensílio...",
-        success: "Utensílio cadastrado com sucesso!",
-        error: "Erro ao tentar cadastrar novo utensílio.",
-      }
-    );
-    setInputs({ name: "", price: 0, link: "" });
+        itemType: parseItemType(itemType),
+      });
+      toast.success("Item criado com sucesso!");
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    } finally {
+      setIsSendingData(false);
+    }
+
+    setInputs({ name: "", price: "", link: "" });
     setImagePreview("");
   };
 
@@ -105,6 +125,7 @@ function ItemForm() {
             NOME DO PRODUTO:
           </label>
           <input
+            autoFocus={true}
             type="text"
             name="name"
             value={inputs.name || ""}
@@ -138,12 +159,22 @@ function ItemForm() {
           />
         </div>
       </form>
+      <div className="w-screen flex flex-col items-center justify-center">
+        <label className="text-[20px]"> SELECIONE O TIPO:</label>
+        <ItemsOptionsButtons
+          onOptionSelected={(selected) => setItemType(selected)}
+          autoSelectFirst={false}
+        />
+      </div>
       <button
+        disabled={
+          inputs.name === "" || inputs.link === "" || inputs.price === ""
+        }
         form="itemForm"
         type="submit"
-        className="bg-cerBlue text-white rounded-[20px] md:w-[566px] md:h-[61px] mb-4 hover:bg-cerPurple"
+        className="bg-cerBlue text-white rounded-[20px] md:w-[566px] md:h-[61px] mb-4 hover:bg-cerPurple disabled:opacity-70 disabled:hover:bg-cerBlue flex items-center justify-center"
       >
-        CADASTRAR
+        {(isSendingData && <LoadingIcon />) || `CADASTRAR`}
       </button>
       <Toaster position="top-right" />
     </div>

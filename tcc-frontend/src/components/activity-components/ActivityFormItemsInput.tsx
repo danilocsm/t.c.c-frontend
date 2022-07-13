@@ -11,16 +11,16 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
     name: "",
     description: "",
   });
-  const [imagePreview, setImagePreview] = useState<any>("");
-  const [base64, setBase64] = useState<string>("");
+  const [itemImagePreview, setItemImagePreview] = useState<any>("");
+  const [itemImageBase64, setItemImageBase64] = useState<string>("");
 
   const handleClick = (event: any) => {
     event.preventDefault();
     setItems((items: any) => [
       ...items,
-      { name: inputs.name, description: inputs.description, image: base64 },
+      { name: inputs.name, description: inputs.description, image: itemImageBase64 },
     ]);
-    setImagePreview("");
+    setItemImagePreview("");
     setInputs({ name: "", description: "" });
     setTimeout(() => {
       toast.success("Item adicionado com sucesso!");
@@ -33,17 +33,17 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const _handleReaderLoaded = (readerEvt: any) => {
+  const _handleItemReaderLoaded = (readerEvt: any) => {
     let binaryString = readerEvt.target.result;
-    setBase64(btoa(binaryString));
+    setItemImageBase64(btoa(binaryString));
   };
 
-  const onChange = (event: any) => {
+  const onItemFormChange = (event: any) => {
     if (event.target.files === undefined || event.target.files === null) return;
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = _handleReaderLoaded;
+      reader.onload = _handleItemReaderLoaded;
       reader.readAsBinaryString(file);
     }
   };
@@ -55,7 +55,7 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
 
     if (reader !== undefined && file !== undefined) {
       reader.onloadend = () => {
-        setImagePreview(reader.result);
+        setItemImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -63,15 +63,15 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
 
   return (
     <div
-      className="flex flex-row md:w-[1030px] md:h-[225px] rounded-[20px] border-[1px] border-solid border-cerBlue bg-white"
-      onChange={onChange}
+      className="flex flex-row md:w-[1030px] md:h-[225px] rounded-[20px] border-[1px] border-solid border-cerBlue bg-white my-4"
+      onChange={onItemFormChange}
     >
       <div className="flex flex-col items-center justify-center h-full w-1/4">
         <label
           htmlFor="imageUploadInput"
           className="rounded-full bg-cerGreen cursor-pointer w-[159px] h-[159px] flex flex-col items-center justify-center"
         >
-          {imagePreview === "" ? (
+          {itemImagePreview === "" ? (
             <div className="hover:animate-bounce flex flex-row items-center">
               <UploadIcon />
               <span className="font-semibold text-[14px]">
@@ -80,7 +80,7 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
               </span>
             </div>
           ) : (
-            <img src={imagePreview} className="w-full h-full rounded-full" />
+            <img src={itemImagePreview} className="w-full h-full rounded-full" />
           )}
           <input
             type="file"
@@ -92,7 +92,7 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
           />
         </label>
       </div>
-      <div className="h-full flex flex-col items-center justify-center h-full w-2/4 gap-y-2">
+      <div className="flex flex-col items-center justify-center h-full w-2/4 gap-y-2">
         <input
           type="text"
           name="name"

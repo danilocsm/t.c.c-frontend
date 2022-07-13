@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UploadIcon from "../UploadIcon";
 
-function ACtivityImageInput() {
+interface ActivityImageInputProps {
+  isFormSent: boolean;
+}
+
+function ACtivityImageInput({ isFormSent }: ActivityImageInputProps) {
   const [imagePreview, setImagePreview] = useState<any>("");
 
-  const photoUpload = (event: any) => {
+  useEffect(() => {
+    if (isFormSent) setImagePreview("");
+  }, [isFormSent]);
+
+  const onActivityImagePhotoUpload = (event: any) => {
     event.preventDefault();
     const reader = new FileReader();
     const file = event.target.files[0];
@@ -15,7 +23,6 @@ function ACtivityImageInput() {
       };
       reader.readAsDataURL(file);
     }
-    console.log(file);
   };
 
   return (
@@ -47,8 +54,7 @@ function ACtivityImageInput() {
           name="image"
           accept=".jpeg, .png, .jpg"
           src={imagePreview}
-          onChange={photoUpload}
-          onSubmit={(event: any) => setImagePreview("")}
+          onChange={onActivityImagePhotoUpload}
         />
       </label>
     </div>

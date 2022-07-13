@@ -68,6 +68,7 @@ function Items() {
           onOptionSelected={(selected: string) => {
             setItemType(selected);
           }}
+          autoSelectFirst={true}
         />
       </div>
       <div className="w-screen h-fit flex items-center justify-center md:pl-10 mb-4">

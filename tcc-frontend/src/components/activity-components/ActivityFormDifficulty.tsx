@@ -22,7 +22,7 @@ function ActivityFormDifficulty({ onSelected }: ActivityFormDifficultyProps) {
         onSelected("HARD");
         break;
       case "MUITO DIFÍCIL":
-        onSelected("VERY HARD");
+        onSelected("VERY_HARD");
         break;
       default:
         onSelected("");

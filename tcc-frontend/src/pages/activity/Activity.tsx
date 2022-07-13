@@ -20,32 +20,6 @@ type ActivityDTO = {
 
 function Activity() {
   const activity: ActivityDTO = useLocation().state as ActivityDTO;
-  const [activityObjects, setActivitytObjects] = useState<any[]>([]);
-  const [isFecthingData, setIsFetchingData] = useState(false);
-
-  const fetchExtraData = async () => {
-    setIsFetchingData(true);
-    console.log(activity);
-    try {
-      const response1 = await api.get(
-        "/activities/" + activity.name + "/getObjects"
-      );
-      setActivitytObjects(response1.data);
-    } catch (error) {
-      toast.error("Falha ao carregar dados");
-    } finally {
-      setIsFetchingData(false);
-    }
-  };
-
-  useEffect(() => {
-    const abortController = new AbortController();
-    fetchExtraData();
-
-    return () => {
-      abortController.abort();
-    };
-  }, []);
 
   return (
     <>
@@ -57,9 +31,7 @@ function Activity() {
           <p className="pl-2 pr-2">{activity.description}</p>
           <h2 className="mt-2">
             <span className="font-bold">Síndromes e doenças em foco:</span>{" "}
-            {isFecthingData ? (
-              <LoadingIcon />
-            ) : activity.illnesses ? (
+            {activity.illnesses ? (
               <span>{activity.illnesses}</span>
             ) : (
               <span>Sem doenças cadastradas</span>
@@ -74,15 +46,13 @@ function Activity() {
             UTENSÍLIOS QUE PODEM AUXILIAR:
           </h2>
           <Gallery className={""}>
-            {isFecthingData ? (
-              <LoadingIcon />
-            ) : activityObjects.length > 0 ? (
-              activityObjects.map((object) => {
+            {activity.items.length > 0 ? (
+              activity.items.map((object) => {
                 return (
                   <ActivityObject
                     name={object.name.toUpperCase()}
                     description={object.description}
-                    img={object.imageUrl}
+                    img={object.image}
                   />
                 );
               })
