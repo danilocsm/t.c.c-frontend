@@ -51,7 +51,9 @@ function ActivityForm() {
       });
       toast.success("Atividade cadastrada com sucesso!");
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      if (error.response.data.status === 403) {
+        toast.error("Usuário não autenticado");
+      } else toast.error(error.response.data.message);
     } finally {
       setIsSendingData(false);
     }

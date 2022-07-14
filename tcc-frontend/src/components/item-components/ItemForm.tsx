@@ -30,18 +30,21 @@ function ItemForm() {
   const [isSendingData, setIsSendingData] = useState<boolean>(false);
 
   const handleSubmit = async (event: any) => {
-    // TODO implementar envio de email 
     event.preventDefault();
     setIsSendingData(true);
     try {
-      const response = await api.post("/items/create", {
-        ...inputs,
+      await api.post("/items/create", {
+        name: inputs.name,
+        link: inputs.link,
+        price: parseFloat(inputs.price),
         image: base64,
-        itemType: parseItemType(itemType),
+        itemType: parseItemType(itemType.toUpperCase()),
       });
       toast.success("Item criado com sucesso!");
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      if (error.response.data.status === 403) {
+        toast.error("Usuário não autenticado");
+      } else toast.error(error.response.data.message);
     } finally {
       setIsSendingData(false);
     }
@@ -169,7 +172,10 @@ function ItemForm() {
       </div>
       <button
         disabled={
-          inputs.name === "" || inputs.link === "" || inputs.price === ""
+          inputs.name === "" ||
+          inputs.link === "" ||
+          inputs.price === "" ||
+          itemType === ""
         }
         form="itemForm"
         type="submit"

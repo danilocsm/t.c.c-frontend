@@ -8,7 +8,7 @@ import { api } from "../../lib/api";
 
 type ItemsType = {
   name: string;
-  image: string;
+  imageUrl: string;
   link: string;
   itemType: string;
 };
@@ -84,7 +84,7 @@ function Items() {
               return (
                 <ItemGridObject
                   title={item.name}
-                  image={item.image}
+                  image={item.imageUrl}
                   link={item.link}
                   buttonText="clique aqui para comprar"
                 />

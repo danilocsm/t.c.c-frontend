@@ -1,10 +1,19 @@
 import { FormEvent, useState } from "react";
+import { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../../lib/services/auth.service";
+import loginService from "../../lib/services/login.service";
 
 function LoginForm() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    await loginService(email, password);
+    if (isAuthenticated()) {
+      navigate("/admins", {replace: true});
+    }
   };
 
   return (
@@ -16,7 +25,7 @@ function LoginForm() {
         <span className="text-[20px] mt-2">E-MAIL:</span>
         <input
           type="text"
-          name="name"
+          name="email"
           className="md:w-[1030px] md:h-[65px] bg-white rounded-[20px] pl-4"
           placeholder="email"
           onChange={(event) => {
@@ -26,8 +35,8 @@ function LoginForm() {
         />
         <span className="text-[20px]">SENHA:</span>
         <input
-          type="text"
-          name="email"
+          type="password"
+          name="password"
           className="md:w-[1030px] md:h-[65px] bg-white rounded-[20px] pl-4"
           placeholder="password"
           onChange={(event) => setPassword(event.target.value)}
@@ -35,14 +44,13 @@ function LoginForm() {
         />
         <button
           type="submit"
-          disabled={
-            email.length === 0 || password.length === 0
-          }
+          disabled={email.length === 0 || password.length === 0}
           className="self-end rounded-[20px] bg-cerBlue w-[100px] h-[60px] mr-10 mb-2 hover:bg-cerPurple hovert:text-white focus:border-2 focus:border-cerPurple focus:text-white focus:outline-none disabled:opacity-50 disabled:hover:opacity-70 transition-all ease-in-out"
         >
           Entrar
         </button>
       </div>
+      <Toaster position="top-right" />
     </form>
   );
 }

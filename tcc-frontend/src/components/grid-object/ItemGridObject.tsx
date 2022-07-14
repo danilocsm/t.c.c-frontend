@@ -27,10 +27,6 @@ function ItemGridObject({ title, image, link, buttonText }: ItemObjectProps) {
         )}
       </div>
       <span className="text-[32px]"> {title.toUpperCase()}</span>
-      {/* <p className="text-[20px] text-center">
-        Atividades que podem ser realizadas: exemplo1, exemplo2, exemplo3,
-        exemplo4, exemplo5.
-      </p> */}
       <button
         className="md:w-[260px] md:h-[47px] w-fit h-fit rounded-[20px] bg-cerBlue text-center py-2 hover:bg-cerPurple transition-all ease-in-out focus:border-4 focus:border-cerPurple focus:outline-none text-[20px] focus:text-white"
         onClick={onClick}

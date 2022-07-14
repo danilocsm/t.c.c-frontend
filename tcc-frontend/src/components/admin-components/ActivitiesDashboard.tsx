@@ -31,7 +31,7 @@ function ActivitiesDashboard() {
       {(isFecthingData && <LoadingIcon />) ||
         (activities.length > 0 &&
           activities.map((activity: any) => {
-            return <ActivityEditForm {...activity} />;
+            return <ActivityEditForm {...activity} key={activity.id}/>;
           })) || <h1 className="text-[36px]">Sem atividades cadastradas</h1>}
     </div>
   );

@@ -57,7 +57,7 @@ function Activities() {
         ) : activities.length === 0 ? (
           <h1 className="text-[36px] mt-4">{`Nenhuma atividade cadastrada.`}</h1>
         ) : (
-          <div className="grid md:grid-cols-4 grid-cols-2 w-screen items-center justify-center gap-x-14 px-8 overflow-x-hidden">
+          <div className="grid lg:grid-cols-4 grid-cols-2 w-screen items-center justify-center gap-x-14 px-8 overflow-x-hidden">
             {activities.map((activity: any) => {
               return (
                 <ActivityGridObject

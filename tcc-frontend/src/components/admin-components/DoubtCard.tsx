@@ -24,7 +24,9 @@ function DoubtCard({ id, name, email, text }: DoubtCardProps) {
       });
       setAnswer("");
     } catch (error: any) {
-      toast.error("Erro tentar responder dúvida");
+      if (error.response.data.status === 403) {
+        toast.error("Usuário não autenticado");
+      } else toast.error(error.response.data.message);
     } finally {
       setIsSending(false);
     }
