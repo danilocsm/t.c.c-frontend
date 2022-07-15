@@ -21,8 +21,9 @@ function LoginForm() {
       className="w-full p-4 flex items-center justify-center py-10"
       onSubmit={handleSubmit}
     >
-      <div className="md:w-[1170px] md:h-[300px] w-3/4 h-2/3 bg-cerGreen flex flex-col items-center justify-start gap-6 rounded-[20px] shadow-cerShadow">
-        <span className="text-[20px] mt-2">E-MAIL:</span>
+      <div className="w-[calc(60%-2rem)] bg-cerGreen flex flex-col items-center justify-start gap-6 rounded-[20px] shadow-cerShadow">
+        <h1 className="text-center text-[36px] font-bold">LOGIN PARA AGENTES DE SAÚDE</h1>
+        <span className="text-center text-[20px] mt-2">E-MAIL:</span>
         <input
           type="text"
           name="email"
@@ -33,7 +34,7 @@ function LoginForm() {
           }}
           value={email}
         />
-        <span className="text-[20px]">SENHA:</span>
+        <span className="text-center text-[20px]">SENHA:</span>
         <input
           type="password"
           name="password"
