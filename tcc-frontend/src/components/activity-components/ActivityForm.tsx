@@ -48,7 +48,7 @@ function ActivityForm() {
         difficulty: difficulty,
         image: base64,
         items: activityItems,
-      });
+      }, {withCredentials: true});
       toast.success("Atividade cadastrada com sucesso!");
     } catch (error: any) {
       if (error.response.data.status === 403) {
