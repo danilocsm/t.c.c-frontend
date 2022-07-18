@@ -14,8 +14,8 @@ function SectionContainer({ name, brief, page }: SectionContainerProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center rounded-[20px] bg-cerGreen w-[calc(50%-2rem)] h-[calc(25vh-2rem)]">
-      <p className="text-[20px] text-center h-auto">{brief}</p>
+    <div className="flex flex-col items-center justify-center rounded-[20px] bg-cerGreen w-[calc(70%-2rem)] h-[calc(25vh-2rem)] px-2 gap-y-2">
+      <p className="text-[20px] text-center lg:block hidden">{brief}</p>
       <button
         onClick={onButtonClick}
         className="flex items-center justify-center bg-cerPurple rounded-[20px] w-[calc(50%-2rem)] h-[calc(25%-1rem)] hover:bg-cerBlue focus:outline-none focus:bg-cerBlue focus:border-[1px] focus: border-white"

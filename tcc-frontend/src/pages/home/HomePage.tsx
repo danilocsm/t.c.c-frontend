@@ -31,21 +31,20 @@ const sections = [
     page: "/help",
   },
 ];
+
 function HomePage() {
   return (
     <div className="w-screen flex flex-col items-center justify-center">
-      <div className="flex items-center justify-center px-12 w-[calc(70vw-2rem)]">
-        <div className="w-full grid grid-cols-2 items-center justify-center gap-4 mt-4">
-          {sections.map((section) => {
-            return (
-              <SectionContainer
-                name={section.name.toUpperCase()}
-                brief={section.brief}
-                page={section.page}
-              />
-            );
-          })}
-        </div>
+      <div className="w-[calc(80%-2rem)] grid place-items-center grid-cols-2 gap-4 mt-4 px-6">
+        {sections.map((section) => {
+          return (
+            <SectionContainer
+              name={section.name.toUpperCase()}
+              brief={section.brief}
+              page={section.page}
+            />
+          );
+        })}
       </div>
       <LoginForm />
     </div>
