@@ -27,7 +27,7 @@ function LoginForm() {
         <input
           type="text"
           name="email"
-          className="md:w-[1030px] md:h-[65px] bg-white rounded-[20px] pl-4"
+          className="w-[calc(90%-2rem)] h-[calc(9vh-2rem)] bg-white rounded-[20px] pl-4"
           placeholder="email"
           onChange={(event) => {
             setEmail(event.target.value);
@@ -38,7 +38,7 @@ function LoginForm() {
         <input
           type="password"
           name="password"
-          className="md:w-[1030px] md:h-[65px] bg-white rounded-[20px] pl-4"
+          className="w-[calc(90%-2rem)] h-[calc(9vh-2rem)] bg-white rounded-[20px] pl-4"
           placeholder="password"
           onChange={(event) => setPassword(event.target.value)}
           value={password}

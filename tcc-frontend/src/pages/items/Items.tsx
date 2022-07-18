@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import ItemGridObject from "../../components/grid-object/ItemGridObject";
 import ItemsOptionsLayout from "../../components/item-components/ItemsOptionsButtons";
 import LoadingIcon from "../../components/LoadingIcon";
-import { api } from "../../lib/api";
+import { PublicApi } from "../../lib/api";
 
 type ItemsType = {
   name: string;
@@ -21,7 +21,7 @@ function Items() {
   const fetchItems = async (filter: string) => {
     setIsGettingItems(true);
     try {
-      const response = await api.get("/items/all/" + filter);
+      const response = await PublicApi.get("/items/all/" + filter);
       setItemsToRender(response.data);
       toast.success("Items recuperados com sucesso");
     } catch (error: AxiosError | any) {

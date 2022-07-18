@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { api } from "../../lib/api";
+import { PrivateApi } from "../../lib/api";
 import LoadingIcon from "../LoadingIcon";
 
 interface DoubtCardProps {
@@ -18,7 +18,7 @@ function DoubtCard({ id, name, email, text }: DoubtCardProps) {
     event.preventDefault();
     setIsSending(true);
     try {
-      await api.patch("/questions/" + id, {
+      await PrivateApi.patch("/questions/" + id, {
         answer: answer,
         contactEmail: email,
       });
@@ -37,7 +37,9 @@ function DoubtCard({ id, name, email, text }: DoubtCardProps) {
       <div className="flex flex-col h-[250px] py-4 md:w-[900px] justify-start items-start">
         <span className="text-[30px] self-start">{email}</span>
         <span className="text-[30px] self-start ">{name}</span>
-        <p className="text-[18px] self-start pl-4 overflow-y-auto scrollbar-thin scrollbar-track-cerBlue">{text}</p>
+        <p className="text-[18px] self-start pl-4 overflow-y-auto scrollbar-thin scrollbar-track-cerBlue">
+          {text}
+        </p>
       </div>
       <form
         onSubmit={handleSubmit}

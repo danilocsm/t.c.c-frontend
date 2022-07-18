@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { api } from "../../lib/api";
+import { PublicApi } from "../../lib/api";
 import LoadingIcon from "../LoadingIcon";
 import ItemEditForm from "./ItemEditForm";
 
@@ -11,7 +11,7 @@ function ItemsDashboard() {
   const fetchActivities = async () => {
     setIsFecthingData(true);
     try {
-      const response = await api.get("/items/all");
+      const response = await PublicApi.get("/items/all");
       setItems(response.data);
       toast.success("Items recuperados com sucesso!");
     } catch (error: any) {
@@ -31,7 +31,7 @@ function ItemsDashboard() {
       {(isFecthingData && <LoadingIcon />) ||
         (items.length > 0 &&
           items.map((item: any) => {
-            return <ItemEditForm {...item} key={item.id}/>;
+            return <ItemEditForm {...item} key={item.id} />;
           })) || <h1 className="text-[36px]">Sem itens cadastrados</h1>}
     </div>
   );

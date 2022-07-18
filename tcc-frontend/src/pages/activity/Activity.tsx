@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { useLocation } from "react-router";
 import ActivityObject from "../../components/activity-components/ActivityObject";
 import BackToActivitiesButton from "../../components/activity-components/BackToActivitiesButton";
 import Gallery from "../../components/gallery/Gallery";
-import LoadingIcon from "../../components/LoadingIcon";
-import { api } from "../../lib/api";
 
 type ActivityDTO = {
   id: string;

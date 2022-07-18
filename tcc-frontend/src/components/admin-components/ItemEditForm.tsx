@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { api } from "../../lib/api";
+import { PrivateApi } from "../../lib/api";
 import LoadingIcon from "../LoadingIcon";
 import UploadIcon from "../UploadIcon";
 
@@ -26,7 +26,7 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
     event.preventDefault();
     setIsSendingData(true);
     try {
-      await api.patch("/items/" + id, {
+      await PrivateApi.patch("/items/" + id, {
         name: inputs.name || undefined,
         price: inputs.price || undefined,
         link: inputs.link || undefined,
@@ -81,7 +81,7 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
 
   const onDeleteClicked = async (event: any) => {
     event.preventDefault();
-    toast.promise(api.delete("items/" + id), {
+    toast.promise(PrivateApi.delete("items/" + id), {
       success: "Item deletado com sucesso",
       loading: "Deletando Item",
       error: "Erro ao tentar deletar Item.",

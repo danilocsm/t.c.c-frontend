@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { api } from "../../lib/api";
+import { PublicApi } from "../../lib/api";
 import LoadingIcon from "../LoadingIcon";
 import ActivityEditForm from "./ActivityEditForm";
 
@@ -11,7 +11,8 @@ function ActivitiesDashboard() {
   const fetchActivities = async () => {
     setIsFecthingData(true);
     try {
-      const response = await api.get("/activities/all");
+      console.log("recuperando atividades");
+      const response = await PublicApi.get("/activities/all");
       setActivities(response.data);
       toast.success("Atividades recuperadas com sucesso!");
     } catch (error: any) {
@@ -31,7 +32,7 @@ function ActivitiesDashboard() {
       {(isFecthingData && <LoadingIcon />) ||
         (activities.length > 0 &&
           activities.map((activity: any) => {
-            return <ActivityEditForm {...activity} key={activity.id}/>;
+            return <ActivityEditForm {...activity} key={activity.id} />;
           })) || <h1 className="text-[36px]">Sem atividades cadastradas</h1>}
     </div>
   );

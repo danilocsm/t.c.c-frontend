@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { api } from "../../lib/api";
+import { PublicApi } from "../../lib/api";
 import LoadingIcon from "../LoadingIcon";
 import DoubtCard from "./DoubtCard";
 
@@ -11,11 +11,11 @@ function DoubtsDashboard() {
   const fetchDoubts = async () => {
     setIsFetchingData(true);
     try {
-      const response = await api.get("/questions/all");
+      const response = await PublicApi.get("/questions/all");
       setDoubts(response.data);
       toast.success("Dúvidas recuperadas com sucesso!");
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message);
     } finally {
       setIsFetchingData(false);
     }
@@ -38,6 +38,7 @@ function DoubtsDashboard() {
                   name={doubt.name}
                   email={doubt.contactEmail}
                   text={doubt.text}
+                  key={doubt.id}
                 />
               );
             }))}

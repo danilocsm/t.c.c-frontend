@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import CloseButton from "../../components/CloseButton";
 import DefaultForm from "../../components/default-form/DefaultForm";
 import LoadingIcon from "../../components/LoadingIcon";
-import { api } from "../../lib/api";
+import { PublicApi } from "../../lib/api";
 import AddTestimonialButton from "../../components/testimonial-components/AddTestimonialButton";
 import TestimonialField from "../../components/testimonial-components/TestimonialField";
 
@@ -21,7 +21,7 @@ function Testimonials() {
   const fetchTestimonials = async () => {
     setIsGettingTestimonials(true);
     try {
-      const response = await api.get("/testimonials/all");
+      const response = await PublicApi.get("/testimonials/all");
       setTestimonials(response.data);
     } catch (error: AxiosError | any) {
     } finally {
@@ -45,7 +45,7 @@ function Testimonials() {
     setShowNewTestimonialForm(false);
     console.log(data);
     try {
-      await api.post("/testimonials/create", {
+      await PublicApi.post("/testimonials/create", {
         author: data.input1Value,
         text: data.textAreaValue,
       });

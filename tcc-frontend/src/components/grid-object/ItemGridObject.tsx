@@ -1,4 +1,3 @@
-
 interface ItemObjectProps {
   title: string;
   image: string | null;

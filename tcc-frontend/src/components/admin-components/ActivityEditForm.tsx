@@ -2,7 +2,7 @@ import { Popover } from "@headlessui/react";
 import { ToteSimple, UploadSimple } from "phosphor-react";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { api } from "../../lib/api";
+import { PrivateApi } from "../../lib/api";
 import ActivityFormItemsInput from "../activity-components/ActivityFormItemsInput";
 import LoadingIcon from "../LoadingIcon";
 
@@ -28,8 +28,6 @@ interface ActivityEditFormProps {
   observations: string;
   items: Item[];
 }
-
-// TODO melhorar aviso que imagem foi carregada com sucesso
 
 function ActivityEditForm({
   id,
@@ -61,7 +59,7 @@ function ActivityEditForm({
     event.preventDefault();
     setIsSendingData(true);
     try {
-      api.patch("/activities/" + id, {
+      PrivateApi.patch("/activities/" + id, {
         name: inputs.name || undefined,
         description: inputs.description || undefined,
         illnesses: inputs.illnesses || undefined,
@@ -109,7 +107,7 @@ function ActivityEditForm({
 
   const onDeleteClicked = async (event: any) => {
     event.preventDefault();
-    toast.promise(api.delete("activities/" + id), {
+    toast.promise(PrivateApi.delete("activities/" + id), {
       success: "Atividade deletada com sucesso",
       loading: "Deletando atividade",
       error: "Erro ao tentar deletar atividade.",

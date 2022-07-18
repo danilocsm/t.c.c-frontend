@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { api } from "../../lib/api";
+import { PrivateApi } from "../../lib/api";
 import LoadingIcon from "../LoadingIcon";
 import UploadIcon from "../UploadIcon";
 import ItemsOptionsButtons from "./ItemsOptionsButtons";
@@ -33,7 +33,7 @@ function ItemForm() {
     event.preventDefault();
     setIsSendingData(true);
     try {
-      await api.post("/items/create", {
+      await PrivateApi.post("/items/create", {
         name: inputs.name,
         link: inputs.link,
         price: parseFloat(inputs.price),

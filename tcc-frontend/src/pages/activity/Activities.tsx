@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import ActivityGridObject from "../../components/grid-object/ActivityGridObject";
 import LoadingIcon from "../../components/LoadingIcon";
 import SearchBar from "../../components/searchbar/SearchBar";
-import { api } from "../../lib/api";
+import { PublicApi } from "../../lib/api";
 
 function Activities() {
   const [activities, setActivities] = useState([]);
@@ -13,7 +13,7 @@ function Activities() {
   const fetchActivities = async () => {
     setIsGettingActivities(true);
     try {
-      const response = await api.get("activities/all");
+      const response = await PublicApi.get("activities/all");
       setActivities(response.data);
       toast.success("Atividades recuperadas com sucesso!");
     } catch (error: AxiosError | any) {
