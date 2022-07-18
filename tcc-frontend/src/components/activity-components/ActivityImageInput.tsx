@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import UploadIcon from "../UploadIcon";
 
 interface ActivityImageInputProps {
-  isFormSent: boolean;
+  isFormSent?: boolean;
 }
 
-function ACtivityImageInput({ isFormSent }: ActivityImageInputProps) {
+function ActivityImageInput({ isFormSent }: ActivityImageInputProps) {
   const [imagePreview, setImagePreview] = useState<any>("");
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function ACtivityImageInput({ isFormSent }: ActivityImageInputProps) {
     event.preventDefault();
     const reader = new FileReader();
     const file = event.target.files[0];
-
+    console.log(file);
     if (reader !== undefined && file !== undefined) {
       reader.onloadend = () => {
         setImagePreview(reader.result);
@@ -61,4 +61,4 @@ function ACtivityImageInput({ isFormSent }: ActivityImageInputProps) {
   );
 }
 
-export default ACtivityImageInput;
+export default ActivityImageInput;

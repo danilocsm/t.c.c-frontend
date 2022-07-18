@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { api } from "../../lib/api";
+import { PrivateApi } from "../../lib/api";
 import LoadingIcon from "../LoadingIcon";
 import UploadIcon from "../UploadIcon";
 import ItemsOptionsButtons from "./ItemsOptionsButtons";
@@ -33,14 +33,18 @@ function ItemForm() {
     event.preventDefault();
     setIsSendingData(true);
     try {
-      const response = await api.post("/items/create", {
-        ...inputs,
+      await PrivateApi.post("/items/create", {
+        name: inputs.name,
+        link: inputs.link,
+        price: parseFloat(inputs.price),
         image: base64,
-        itemType: parseItemType(itemType),
+        itemType: parseItemType(itemType.toUpperCase()),
       });
       toast.success("Item criado com sucesso!");
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      if (error.response.data.status === 403) {
+        toast.error("Usuário não autenticado");
+      } else toast.error(error.response.data.message);
     } finally {
       setIsSendingData(false);
     }
@@ -89,7 +93,7 @@ function ItemForm() {
       <form
         onChange={onChange}
         onSubmit={handleSubmit}
-        className="w-screen flex flex-row h-full"
+        className="w-screen flex flex-row h-full items-center justify-center"
         id="itemForm"
       >
         <div className="w-1/4 flex flex-col items-center justify-center gap-y-4">
@@ -159,7 +163,7 @@ function ItemForm() {
           />
         </div>
       </form>
-      <div className="w-screen flex flex-col items-center justify-center">
+      <div className="w-screen flex flex-col items-center justify-center pl-4">
         <label className="text-[20px]"> SELECIONE O TIPO:</label>
         <ItemsOptionsButtons
           onOptionSelected={(selected) => setItemType(selected)}
@@ -168,7 +172,10 @@ function ItemForm() {
       </div>
       <button
         disabled={
-          inputs.name === "" || inputs.link === "" || inputs.price === ""
+          inputs.name === "" ||
+          inputs.link === "" ||
+          inputs.price === "" ||
+          itemType === ""
         }
         form="itemForm"
         type="submit"

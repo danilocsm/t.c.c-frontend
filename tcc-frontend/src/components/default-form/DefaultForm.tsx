@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import LoadingIcon from "../LoadingIcon";
 
 interface DefaultFormProps {
   input1Data: { label: string; placeholder: string };
@@ -18,12 +19,15 @@ function DefaultForm({
   const [input1Value, setInput1Value] = useState<string>("");
   const [input2Value, setInput2Value] = useState<string>("");
   const [textAreaValue, setTextAreaValue] = useState<string>("");
+  const [isSendingData, setIsSendingData] = useState<boolean>(false);
 
   const handleSubmit = async (event: FormEvent) => {
+    setIsSendingData(true);
     await onSubmit(event, { input1Value, input2Value, textAreaValue });
     setInput1Value("");
     setInput2Value("");
     setTextAreaValue("");
+    setIsSendingData(false);
   };
 
   return (
@@ -32,7 +36,9 @@ function DefaultForm({
       onSubmit={handleSubmit}
     >
       <div className="md:w-[1170px] md:h-[628px] w-2/4 h-fit bg-cerGreen flex flex-col items-center justify-start gap-6 rounded-[20px] shadow-cerShadow">
-        <div className="absolute justify-self-start self-start p-3">{children}</div>
+        <div className="absolute justify-self-start self-start p-3">
+          {children}
+        </div>
         <span className="text-[20px] mt-2">{input1Data.label}:</span>
         <input
           type="text"
@@ -68,9 +74,9 @@ function DefaultForm({
             input1Value.length === 0 ||
             input2Value.length === 0
           }
-          className="self-end rounded-[20px] bg-cerBlue w-[100px] h-[60px] mr-10 mb-2 hover:bg-cerPurple hovert:text-white focus:border-2 focus:border-cerPurple focus:text-white focus:outline-none disabled:opacity-50 disabled:hover:opacity-70 transition-all ease-in-out"
+          className="self-end rounded-[20px] bg-cerBlue w-[100px] h-[60px] mr-10 mb-2 hover:bg-cerPurple hovert:text-white focus:border-2 focus:border-cerPurple focus:text-white focus:outline-none disabled:opacity-50 disabled:hover:opacity-70 transition-all ease-in-out flex items-center justify-center"
         >
-          Enviar
+          {(isSendingData && <LoadingIcon />) || `ENVIAR`}
         </button>
       </div>
     </form>

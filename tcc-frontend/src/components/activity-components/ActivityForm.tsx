@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { api } from "../../lib/api";
+import { PrivateApi } from "../../lib/api";
 import ActivityImageInput from "./ActivityImageInput";
 import ActivityFormDifficulty from "./ActivityFormDifficulty";
 import ActivityFormItemsInput from "./ActivityFormItemsInput";
@@ -43,15 +43,21 @@ function ActivityForm() {
     event.preventDefault();
     setIsSendingData(true);
     try {
-      await api.post("/activities/create", {
-        ...inputs,
-        difficulty: difficulty,
-        image: base64,
-        items: activityItems,
-      });
+      await PrivateApi.post(
+        "/activities/create",
+        {
+          ...inputs,
+          difficulty: difficulty,
+          image: base64,
+          items: activityItems,
+        },
+        { withCredentials: true }
+      );
       toast.success("Atividade cadastrada com sucesso!");
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      if (error.response.data.status === 403) {
+        toast.error("Usuário não autenticado");
+      } else toast.error(error.response.data.message);
     } finally {
       setIsSendingData(false);
     }
@@ -120,7 +126,7 @@ function ActivityForm() {
         <span className="text-[20px] self-start">
           INSERIR IMAGENS PASSO-A-PASSO:
         </span>
-        <ActivityImageInput isFormSent={isSendingData}/>
+        <ActivityImageInput isFormSent={isSendingData} />
         <span className="text-[20px] self-start">INSERIR UTENSÍLIOS:</span>
         <ActivityFormItemsInput setItems={setActivityItems} />
         <Toaster position="top-right" />

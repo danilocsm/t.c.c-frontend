@@ -10,6 +10,7 @@ import Testimonials from "./pages/testimonial/Testimonials";
 import HomePage from "./pages/home/HomePage";
 import "./global.css";
 import HealthAgentPage from "./pages/admin/HealthAgent";
+import { isAuthenticated } from "./lib/services/auth.service";
 
 function App() {
   return (
@@ -24,7 +25,10 @@ function App() {
           <Route path="/items" element={<Items />} />
           <Route path="/help" element={<Help />} />
           <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/admins" element={<HealthAgentPage />} />
+          {isAuthenticated() &&
+            (<Route path="/admins" element={<HealthAgentPage />} /> || (
+              <Route path="/" element={<HomePage />} />
+            ))}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { api } from "../../lib/api";
+import { PublicApi } from "../../lib/api";
 import SearchButton from "./SearchButton";
 import SearchIcon from "./SearchIcon";
 
@@ -11,9 +11,12 @@ function SearchBar() {
 
   const onSearchClick = async () => {
     toast.promise(
-      api.get("/activities/" + inputValue).then((response) => {
-        if (response.data.name !== undefined) 
-          navigate("/activities/detail/" + response.data.name, { replace: true, state: {...response.data} });
+      PublicApi.get("/activities/" + inputValue).then((response) => {
+        if (response.data.name !== undefined)
+          navigate("/activities/detail/" + response.data.name, {
+            replace: true,
+            state: { ...response.data },
+          });
       }),
       {
         loading: "Buscando atividade...",
