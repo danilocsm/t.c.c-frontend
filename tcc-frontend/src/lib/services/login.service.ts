@@ -8,7 +8,6 @@ const loginService = async (username: string, password: string) => {
       password: password,
     });
     if (response.data) {
-      console.log(response.data.token);
       localStorage.setItem("auth-token", response.data.token);
       toast.success("Login realizado com sucesso!");
     }

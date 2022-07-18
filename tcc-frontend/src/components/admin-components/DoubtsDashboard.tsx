@@ -5,7 +5,7 @@ import LoadingIcon from "../LoadingIcon";
 import DoubtCard from "./DoubtCard";
 
 function DoubtsDashboard() {
-  const [doubts, setDoubts] = useState([]);
+  const [doubts, setDoubts] = useState<any[]>([]);
   const [isFetchingData, setIsFetchingData] = useState(false);
 
   const fetchDoubts = async () => {
@@ -33,13 +33,15 @@ function DoubtsDashboard() {
           (doubts.length > 0 &&
             doubts.map((doubt) => {
               return (
-                <DoubtCard
-                  id={doubt.id}
-                  name={doubt.name}
-                  email={doubt.contactEmail}
-                  text={doubt.text}
-                  key={doubt.id}
-                />
+                !doubt.isAnswered && (
+                  <DoubtCard
+                    id={doubt.id}
+                    name={doubt.name}
+                    email={doubt.contactEmail}
+                    text={doubt.text}
+                    key={doubt.id}
+                  />
+                )
               );
             }))}
       </div>
