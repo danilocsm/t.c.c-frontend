@@ -93,7 +93,7 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
       <form
         onChange={onChange}
         onSubmit={handleSubmit}
-        className="w-full flex flex-col items-center justify-center"
+        className="w-full flex flex-col items-center justify-center gap-y-2"
         id="itemForm"
       >
         <div className="w-full flex flex-row items-center justify-center gap-y-4 gap-x-4">
@@ -132,7 +132,7 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
               value={inputs.name || ""}
               onChange={onInputChange}
               id="name"
-              className="w-[872px] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
+              className="w-[calc(100%-5rem)] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
             />
             <input
               type="number"
@@ -142,7 +142,7 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
               placeholder={price.toString()}
               id="price"
               step="0.1"
-              className="w-[872px] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
+              className="w-[calc(100%-5rem)] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
             />
             <input
               type="url"
@@ -150,7 +150,7 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
               value={inputs.link || ""}
               onChange={onInputChange}
               id="link"
-              className="w-[872px] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
+              className="w-[calc(100%-5rem)] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
               placeholder={link}
             />
           </div>

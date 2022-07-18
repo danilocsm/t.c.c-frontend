@@ -11,7 +11,6 @@ function ActivitiesDashboard() {
   const fetchActivities = async () => {
     setIsFecthingData(true);
     try {
-      console.log("recuperando atividades");
       const response = await PublicApi.get("/activities/all");
       setActivities(response.data);
       toast.success("Atividades recuperadas com sucesso!");
