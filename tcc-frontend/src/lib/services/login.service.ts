@@ -13,7 +13,10 @@ const loginService = async (username: string, password: string) => {
     }
     return true;
   } catch (error: any) {
-    toast.error("Credenciais inválidas.");
+    console.log(error);
+    if (error.response.status === 400) toast.error("Credenciais inválidas.");
+    else if (error.response.status === 500) toast.error("Erro do servidor");
+    else toast.error("Não foi possível realizar o login.");
     return false;
   }
 };

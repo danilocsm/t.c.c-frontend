@@ -3,16 +3,21 @@ import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../lib/services/auth.service";
 import loginService from "../../lib/services/login.service";
+import LoadingIcon from "../LoadingIcon";
 
 function LoginForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSigningIn, setIsSigningIn] = useState(false);
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    setIsSigningIn(true);
     await loginService(email, password);
+    setIsSigningIn(false);
     if (isAuthenticated()) {
-      navigate("/admins", {replace: true});
+      navigate("/admins", { replace: true });
     }
   };
 
@@ -22,7 +27,9 @@ function LoginForm() {
       onSubmit={handleSubmit}
     >
       <div className="w-[calc(60%-2rem)] bg-cerGreen flex flex-col items-center justify-start gap-6 rounded-[20px] shadow-cerShadow">
-        <h1 className="text-center text-[36px] font-bold">LOGIN PARA AGENTES DE SAÚDE</h1>
+        <h1 className="text-center text-[36px] font-bold">
+          LOGIN PARA AGENTES DE SAÚDE
+        </h1>
         <span className="text-center text-[20px] mt-2">E-MAIL:</span>
         <input
           type="text"
@@ -46,9 +53,9 @@ function LoginForm() {
         <button
           type="submit"
           disabled={email.length === 0 || password.length === 0}
-          className="self-end rounded-[20px] bg-cerBlue w-[100px] h-[60px] mr-10 mb-2 hover:bg-cerPurple hovert:text-white focus:border-2 focus:border-cerPurple focus:text-white focus:outline-none disabled:opacity-50 disabled:hover:opacity-70 transition-all ease-in-out"
+          className="self-end rounded-[20px] bg-cerBlue w-[100px] h-[60px] mr-10 mb-2 hover:bg-cerPurple hovert:text-white focus:border-2 focus:border-cerPurple focus:text-white focus:outline-none disabled:opacity-50 disabled:hover:opacity-70 transition-all ease-in-out grid place-items-center"
         >
-          Entrar
+          {(isSigningIn && <LoadingIcon />) || "Entrar"}
         </button>
       </div>
       <Toaster position="top-right" />
