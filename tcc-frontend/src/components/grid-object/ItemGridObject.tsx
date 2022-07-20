@@ -13,14 +13,9 @@ function ItemGridObject({ title, image, link, buttonText }: ItemObjectProps) {
   return (
     <div className="flex flex-col md:w-[291px] md:h-[481px] w-fit h-fit items-center justify-center">
       <div className="md:w-[260px] md:h-[211px] md:block hidden rounded-[20px] border-cerBlue border-[1px]">
-        {image ? (
+        {image && (
           <img
             src={`data:image/png;base64, ${image}`}
-            className="scale-90 w-full h-full"
-          />
-        ) : (
-          <img
-            // src={}
             className="scale-90 w-full h-full"
           />
         )}

@@ -18,7 +18,11 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
     event.preventDefault();
     setItems((items: any) => [
       ...items,
-      { name: inputs.name, description: inputs.description, image: itemImageBase64 },
+      {
+        name: inputs.name,
+        description: inputs.description,
+        image: itemImageBase64,
+      },
     ]);
     setItemImagePreview("");
     setInputs({ name: "", description: "" });
@@ -80,7 +84,10 @@ function ActivityFormItemsInput({ setItems }: ActivityFormItemsInputProps) {
               </span>
             </div>
           ) : (
-            <img src={itemImagePreview} className="w-full h-full rounded-full" />
+            <img
+              src={itemImagePreview}
+              className="w-full h-full rounded-full"
+            />
           )}
           <input
             type="file"
