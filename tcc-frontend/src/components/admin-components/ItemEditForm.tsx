@@ -12,7 +12,13 @@ interface ItemEditFormProps {
   image: string;
 }
 
-function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
+function ItemEditForm({
+  id,
+  name,
+  price,
+  link,
+  image,
+}: ItemEditFormProps) {
   const [inputs, setInputs] = useState<{
     name: string;
     price: string;
@@ -93,13 +99,13 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
       <form
         onChange={onChange}
         onSubmit={handleSubmit}
-        className="w-full flex flex-col items-center justify-center gap-y-2"
+        className="w-full h-full flex flex-col items-center justify-center gap-y-2"
         id="itemForm"
       >
-        <div className="w-full flex flex-row items-center justify-center gap-y-4 gap-x-4">
+        <div className="w-full h-full flex flex-row items-center justify-center gap-y-4 gap-x-4 px-2">
           <label
             htmlFor="pictureInput"
-            className="bg-cerBlue rounded-[20px]  cursor-pointer flex items-center justify-center w-[250px] h-[250px]"
+            className="bg-cerBlue rounded-[20px] cursor-pointer grid place-items-center w-[calc(25%-1rem)] h-[calc(90%-1rem)]"
           >
             {imagePreview === "" ? (
               <div className="hover:animate-bounce flex flex-row items-center">
@@ -123,16 +129,15 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
               name="image"
             />
           </label>
-          <div className="w-3/4 flex flex-col items-start justify-center gap-y-4">
+          <div className="w-3/4 flex flex-col items-start justify-center gap-y-4 ml-6">
             <input
-              autoFocus={true}
               type="text"
               name="name"
               placeholder={name}
               value={inputs.name || ""}
               onChange={onInputChange}
               id="name"
-              className="w-[calc(100%-5rem)] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
+              className="w-[calc(100%-2rem)] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
             />
             <input
               type="number"
@@ -142,7 +147,7 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
               placeholder={price.toString()}
               id="price"
               step="0.1"
-              className="w-[calc(100%-5rem)] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
+              className="w-[calc(100%-2rem)] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
             />
             <input
               type="url"
@@ -150,7 +155,7 @@ function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
               value={inputs.link || ""}
               onChange={onInputChange}
               id="link"
-              className="w-[calc(100%-5rem)] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
+              className="w-[calc(100%-2rem)] h-[59px] rounded-[20px] border-[1px] border-cerBlue bg-white p-4"
               placeholder={link}
             />
           </div>

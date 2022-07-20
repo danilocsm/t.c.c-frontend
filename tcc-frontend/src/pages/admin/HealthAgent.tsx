@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ActivityForm from "../../components/activity-components/ActivityForm";
 import ActivitiesDashboard from "../../components/admin-components/ActivitiesDashboard";
 import AgentBio from "../../components/admin-components/AgentBio";
@@ -6,15 +6,31 @@ import DoubtsDashboard from "../../components/admin-components/DoubtsDashboard";
 import ItemsDashboard from "../../components/admin-components/ItemsDashboard";
 import OptionsLayout from "../../components/admin-components/OptionsLayout";
 import ItemForm from "../../components/item-components/ItemForm";
+import LoginForm from "../../components/login-form/LoginForm";
+import LogoutButton from "../../components/LogoutButton";
+import { useForceUpdate } from "../../hooks/custom.hooks";
+import { isAuthenticated } from "../../lib/services/auth.service";
 
 function HealthAgentPage() {
   const [optionSelected, setOptionSelected] = useState<string>("");
+  const forceUpdate = useForceUpdate();
+
+  if(!isAuthenticated()) {
+    return (
+      <div className="w-screen grid place-items-center mt-4">
+        <LoginForm sideEffect={forceUpdate}/>
+      </div>
+    )
+  }
 
   return (
     <div className="w-screen flex flex-col items-center justify-center p-4">
-      <h1 className="text-[36px] text-center w-screen">
-        PÁGINA DO AGENTE DE SAÚDE
-      </h1>
+      <div className="flex flex-row relative w-screen">
+        <h1 className="text-[36px] text-center w-screen">
+          PÁGINA DO AGENTE DE SAÚDE
+        </h1>
+        <LogoutButton sideEffect={forceUpdate}/>
+      </div>
       <AgentBio />
       <OptionsLayout
         onSelected={(selected: string) => {

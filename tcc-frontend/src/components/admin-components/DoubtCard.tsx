@@ -8,9 +8,10 @@ interface DoubtCardProps {
   name: string;
   email: string;
   text: string;
+  sideEffect: () => void;
 }
 
-function DoubtCard({ id, name, email, text }: DoubtCardProps) {
+function DoubtCard({ id, name, email, text, sideEffect }: DoubtCardProps) {
   const [isSending, setIsSending] = useState<boolean>(false);
   const [answer, setAnswer] = useState<string>("");
 
@@ -22,11 +23,13 @@ function DoubtCard({ id, name, email, text }: DoubtCardProps) {
         answer: answer,
         contactEmail: email,
       });
+      sideEffect();
+      toast.success("Dúvida respondida com sucesso!");
       setAnswer("");
     } catch (error: any) {
       if (error.response.data.status === 403) {
         toast.error("Usuário não autenticado");
-      } else toast.error(error.response.data.message);
+      } else toast.error("Erro inesperado!");
     } finally {
       setIsSending(false);
     }

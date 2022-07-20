@@ -8,6 +8,7 @@ const navItems = [
   { title: "Projeto", href: "/about" },
   { title: "Depoimentos", href: "/testimonials" },
   { title: "Dúvidas", href: "/help" },
+  { title: "Agente de saúde", href: "/admins"},
 ];
 
 function NavBar() {

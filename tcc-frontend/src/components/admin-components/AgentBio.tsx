@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function AgentBio() {
-  // TODO add data fetch from server
   const [agentData, setAgentData] = useState({ image: undefined });
+  const [isFetchingData, setIsFetchingData] = useState(false);
   const [base64, setBase64] = useState<string>("");
 
   const onChange = (event: any) => {
@@ -26,7 +26,6 @@ function AgentBio() {
     const file = event.target.files[0];
 
     if (reader !== undefined && file !== undefined) {
-
       reader.readAsDataURL(file);
     }
   };

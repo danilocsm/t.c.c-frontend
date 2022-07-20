@@ -27,6 +27,7 @@ interface ActivityEditFormProps {
   image: string;
   observations: string;
   items: Item[];
+  sideEffect: () => void;
 }
 
 function ActivityEditForm({
@@ -37,6 +38,7 @@ function ActivityEditForm({
   image,
   observations,
   items,
+  sideEffect,
 }: ActivityEditFormProps) {
   const [newItems, setNewItems] = useState([]);
   const [inputs, setInputs] = useState<FormStringInputs>({
@@ -59,7 +61,7 @@ function ActivityEditForm({
     event.preventDefault();
     setIsSendingData(true);
     try {
-      PrivateApi.patch("/activities/" + id, {
+      await PrivateApi.patch("/activities/" + id, {
         name: inputs.name || undefined,
         description: inputs.description || undefined,
         illnesses: inputs.illnesses || undefined,
@@ -67,6 +69,7 @@ function ActivityEditForm({
         image: base64 || undefined,
         items: newItems || undefined,
       });
+      sideEffect();
       toast.success("Atividade atualizada com sucesso!");
     } catch (error: any) {
       if (error.response.data.status === 403) {

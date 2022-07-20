@@ -1,12 +1,14 @@
 import { FormEvent, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { isAuthenticated } from "../../lib/services/auth.service";
+import { useForceUpdate } from "../../hooks/custom.hooks";
 import loginService from "../../lib/services/login.service";
 import LoadingIcon from "../LoadingIcon";
 
-function LoginForm() {
-  const navigate = useNavigate();
+interface LoginFormProps {
+  sideEffect: () => void;
+}
+
+function LoginForm( {sideEffect}: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSigningIn, setIsSigningIn] = useState(false);
@@ -16,9 +18,7 @@ function LoginForm() {
     setIsSigningIn(true);
     await loginService(email, password);
     setIsSigningIn(false);
-    if (isAuthenticated()) {
-      navigate("/admins", { replace: true });
-    }
+    sideEffect();
   };
 
   return (
