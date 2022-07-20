@@ -46,7 +46,6 @@ function HomePage() {
           );
         })}
       </div>
-      <LoginForm />
     </div>
   );
 }

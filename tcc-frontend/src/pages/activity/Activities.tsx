@@ -34,7 +34,7 @@ function Activities() {
   }, []);
 
   return (
-    <div className="w-100vw grid items-center justify-center">
+    <div className="w-100vw grid place-items-center">
       <h1 className="text-center text-[36px] mt-2">ATIVIDADES</h1>
       <div className="w-screen flex h-1/7 justify-center items-center overflow-x-hidden">
         <p className="text-center text-[20px] px-[135px]">
@@ -55,9 +55,9 @@ function Activities() {
             <LoadingIcon />
           </div>
         ) : activities.length === 0 ? (
-          <h1 className="text-[36px] mt-4">{`Nenhuma atividade cadastrada.`}</h1>
+          <h1 className="text-[36px] mt-4 text-center">{`Nenhuma atividade cadastrada.`}</h1>
         ) : (
-          <div className="grid lg:grid-cols-4 grid-cols-2 w-screen items-center justify-center gap-x-14 px-8 overflow-x-hidden">
+          <div className="grid lg:grid-cols-4 grid-cols-2 w-screen place-items-center gap-x-14 px-8 overflow-x-hidden">
             {activities.map((activity: any) => {
               return (
                 <ActivityGridObject

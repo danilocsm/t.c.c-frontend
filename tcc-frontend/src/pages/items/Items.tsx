@@ -77,9 +77,9 @@ function Items() {
             <LoadingIcon />
           </div>
         ) : itemsToRender.length === 0 ? (
-          <h1 className="text-[36px] mt-4">{`Nenhum item do tipo ${itemType} cadastrado.`}</h1>
+          <h1 className="text-[36px] mt-4 text-center">{`Nenhum item do tipo ${itemType} cadastrado.`}</h1>
         ) : (
-          <div className="grid md:grid-cols-4 grid-cols-2  w-screen items-center justify-center gap-4 px-4 mt-10 overflow-x-hidden">
+          <div className="grid md:grid-cols-4 grid-cols-2 w-screen place-items-center gap-4 px-4 mt-10 overflow-x-hidden">
             {itemsToRender.map((item) => {
               return (
                 <ItemGridObject

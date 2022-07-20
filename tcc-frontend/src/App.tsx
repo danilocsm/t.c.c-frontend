@@ -25,10 +25,8 @@ function App() {
           <Route path="/items" element={<Items />} />
           <Route path="/help" element={<Help />} />
           <Route path="/testimonials" element={<Testimonials />} />
-          {isAuthenticated() &&
-            (<Route path="/admins" element={<HealthAgentPage />} /> || (
-              <Route path="/" element={<HomePage />} />
-            ))}
+          <Route path="/admins" element={<HealthAgentPage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

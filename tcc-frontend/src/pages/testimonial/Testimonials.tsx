@@ -24,6 +24,7 @@ function Testimonials() {
       const response = await PublicApi.get("/testimonials/all");
       setTestimonials(response.data);
     } catch (error: AxiosError | any) {
+      toast.error("Erro recuperando os depoimentos.");
     } finally {
       setIsGettingTestimonials(false);
     }
@@ -33,7 +34,7 @@ function Testimonials() {
     fetchTestimonials();
   }, []);
 
-  const onButtonCLick = async () => {
+  const onButtonClick = async () => {
     setShowNewTestimonialForm(true);
     await setTimeout(() => {
       scrollToRef(myRef);
@@ -65,22 +66,18 @@ function Testimonials() {
       <div className="text-center w-screen px-[318px] mt-2 flex items-center justify-center">
         <h1 className="text-[36px]">DEPOIMENTOS</h1>
       </div>
-      <div className="text-center px-[135px] mt-2 w-fit">
-        <p className="text-[20px]">
-          Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui
-          esse pariatur duis deserunt mollit dolore cillum minim tempor enim.
-          Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate
-          aute id deserunt nisi.Aliqua id fugiat nostrud irure ex duis ea quis
-          id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore
-          cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt
-          sint deserunt.
+      <div className="grid place-items-center px-[135px] mt-2 w-screen">
+        <p className="text-[20px] text-center">
+          Descrição dos depoimentos aqui.
         </p>
       </div>
       <div className="w-scren flex flex-col overflow-x-hidden items-center justify-center gap-y-4 my-4">
         {isGettingTestimonials ? (
           <LoadingIcon />
         ) : testimonials.length === 0 ? (
-          <h1>NENHUM DEPOIMENTO CADASTRADO</h1>
+          <h1 className="text-center text-[36px]">
+            NENHUM DEPOIMENTO CADASTRADO
+          </h1>
         ) : (
           testimonials.map((testimonial: any) => {
             return (
@@ -111,7 +108,7 @@ function Testimonials() {
         </div>
       ) : (
         <div className="flex items-center justify-center">
-          <AddTestimonialButton onClick={onButtonCLick} />
+          <AddTestimonialButton onClick={onButtonClick} />
         </div>
       )}
       <Toaster position="top-right" />

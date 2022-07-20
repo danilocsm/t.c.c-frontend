@@ -22,6 +22,7 @@ function DefaultForm({
   const [isSendingData, setIsSendingData] = useState<boolean>(false);
 
   const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
     setIsSendingData(true);
     await onSubmit(event, { input1Value, input2Value, textAreaValue });
     setInput1Value("");
@@ -32,7 +33,7 @@ function DefaultForm({
 
   return (
     <form
-      className="w-full p-4 flex items-center justify-center"
+      className="relative w-full p-4 flex items-center justify-center"
       onSubmit={handleSubmit}
     >
       <div className="md:w-[1170px] md:h-[628px] w-2/4 h-fit bg-cerGreen flex flex-col items-center justify-start gap-6 rounded-[20px] shadow-cerShadow">

@@ -9,7 +9,7 @@ function AddTestimonialButton({ onClick }: AddTestimonialButtonProps) {
         PARTICIPE DA NOSSA COMUNIDADE
       </h2>
       <button
-        className="md:w-[570px] md:h-[60px] rounded-[20px] text-center text-white md:text-[20px] bg-cerBlue shadow-cerShadow"
+        className="md:w-[570px] md:h-[60px] w-[calc(50%-1rem)] h-[calc(15vh-1rem)] rounded-[20px] text-center text-white md:text-[20px] bg-cerBlue shadow-cerShadow"
         onClick={() => onClick()}
       >
         CLIQUE AQUI PARA ENVIAR SEU DEPOIMENTO
