@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ActivityForm from "../../components/activity-components/ActivityForm";
 import ActivitiesDashboard from "../../components/admin-components/ActivitiesDashboard";
 import AgentBio from "../../components/admin-components/AgentBio";
@@ -9,18 +9,33 @@ import ItemForm from "../../components/item-components/ItemForm";
 import LoginForm from "../../components/login-form/LoginForm";
 import LogoutButton from "../../components/LogoutButton";
 import { useForceUpdate } from "../../hooks/custom.hooks";
-import { isAuthenticated } from "../../lib/services/auth.service";
+import { PrivateApi } from "../../lib/api";
+import { getUser, isAuthenticated } from "../../lib/services/auth.service";
 
 function HealthAgentPage() {
+  const [userData, setUserData] = useState({});
   const [optionSelected, setOptionSelected] = useState<string>("");
   const forceUpdate = useForceUpdate();
 
-  if(!isAuthenticated()) {
+  const fecthUserData = async () => {
+    try {
+      const response = await PrivateApi("/users/" + getUser());
+      if (response.data) setUserData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fecthUserData();
+  });
+
+  if (!isAuthenticated()) {
     return (
       <div className="w-screen grid place-items-center mt-4">
-        <LoginForm sideEffect={forceUpdate}/>
+        <LoginForm sideEffect={forceUpdate} />
       </div>
-    )
+    );
   }
 
   return (
@@ -29,9 +44,13 @@ function HealthAgentPage() {
         <h1 className="text-[36px] text-center w-screen">
           PÁGINA DO AGENTE DE SAÚDE
         </h1>
-        <LogoutButton sideEffect={forceUpdate}/>
+        <LogoutButton sideEffect={forceUpdate} />
       </div>
-      <AgentBio />
+      <AgentBio
+        username={userData.username}
+        email={userData.email}
+        picture={userData.picture}
+      />
       <OptionsLayout
         onSelected={(selected: string) => {
           setOptionSelected(selected);

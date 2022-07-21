@@ -14,7 +14,7 @@ function SectionContainer({ name, brief, page }: SectionContainerProps) {
   };
 
   return (
-    <div className="flex flex-[calc(50%-1rem)] flex-col items-center justify-center rounded-[20px] bg-cerGreen w-full md:w-[calc(70%-2rem)] h-[calc(30vh-2rem)] md:px-2 md:gap-y-2">
+    <div className="flex flex-[calc(50%-1rem)] flex-col items-center justify-center rounded-[20px] bg-cerGreen w-full md:w-[calc(70%-2rem)] h-[calc(30vh-2rem)] md:px-2 md:gap-y-2 shadow-cerShadow">
       <p className="2xl:text-[20px] md:flex justify-center items-center text-center hidden text-[16px] md:h-[calc(65%-1rem)]">
         {brief}
       </p>
