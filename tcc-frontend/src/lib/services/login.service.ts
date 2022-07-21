@@ -8,8 +8,8 @@ const loginService = async (username: string, password: string) => {
       password: password,
     });
     if (response.data) {
-      localStorage.setItem("userId", response.data.user);
-      localStorage.setItem("auth-token", response.data.token);
+      sessionStorage.setItem("userId", response.data.user);
+      sessionStorage.setItem("auth-token", response.data.token);
       toast.success("Login realizado com sucesso!");
     }
   } catch (error: any) {

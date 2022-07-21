@@ -6,8 +6,8 @@ const logoutService = async () => {
   try {
     const userId = getUser();
     const response = await PublicApi.post("/auth/logout", { userId: userId });
-    localStorage.removeItem("auth-token");
-    localStorage.removeItem("userId");
+    sessionStorage.removeItem("auth-token");
+    sessionStorage.removeItem("userId");
     if (response.data) {
       toast.success("Logout realizado com sucesso!");
     }

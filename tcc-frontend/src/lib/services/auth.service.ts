@@ -1,5 +1,5 @@
 export const isAuthenticated = () =>
-  localStorage.getItem("auth-token") !== null;
-export const getToken = () => localStorage.getItem("auth-token");
+  sessionStorage.getItem("auth-token") !== null;
+export const getToken = () => sessionStorage.getItem("auth-token");
 
-export const getUser = () => localStorage.getItem("userId");
+export const getUser = () => sessionStorage.getItem("userId");

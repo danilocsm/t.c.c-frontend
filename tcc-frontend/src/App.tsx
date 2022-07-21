@@ -10,7 +10,6 @@ import Testimonials from "./pages/testimonial/Testimonials";
 import HomePage from "./pages/home/HomePage";
 import "./global.css";
 import HealthAgentPage from "./pages/admin/HealthAgent";
-import { isAuthenticated } from "./lib/services/auth.service";
 
 function App() {
   return (
