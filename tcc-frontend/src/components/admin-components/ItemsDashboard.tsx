@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useForceUpdate } from "../../hooks/custom.hooks";
 import { PublicApi } from "../../lib/api";
 import LoadingIcon from "../LoadingIcon";
@@ -45,10 +45,9 @@ function ItemsDashboard() {
       {(isFecthingData && <LoadingIcon />) ||
         (items.length > 0 &&
           items.map((item: any) => {
-            return (
-              <ItemEditForm {...item} key={item.id} />
-            );
+            return <ItemEditForm {...item} key={item.id} />;
           })) || <h1 className="text-[36px]">Sem itens cadastrados</h1>}
+      <Toaster position="top-right" />
     </div>
   );
 }

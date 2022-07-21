@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useForceUpdate } from "../../hooks/custom.hooks";
 import { PublicApi } from "../../lib/api";
 import LoadingIcon from "../LoadingIcon";
@@ -48,6 +48,7 @@ function ActivitiesDashboard() {
               />
             );
           })) || <h1 className="text-[36px]">Sem atividades cadastradas</h1>}
+      <Toaster position="top-right" />
     </div>
   );
 }

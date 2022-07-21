@@ -47,12 +47,13 @@ function DoubtsDashboard() {
                     name={doubt.name}
                     email={doubt.contactEmail}
                     text={doubt.text}
-                    sideEffect={()=> {fetchDoubts();}}
                     key={doubt.id}
                   />
                 )
               );
-            }))}
+            })) || (
+            <h1 className="text-[36px] text-center">SEM DÚVIDAS CADASTRADAS</h1>
+          )}
       </div>
       <Toaster position="top-right" />
     </div>

@@ -8,10 +8,9 @@ interface DoubtCardProps {
   name: string;
   email: string;
   text: string;
-  sideEffect: () => void;
 }
 
-function DoubtCard({ id, name, email, text, sideEffect }: DoubtCardProps) {
+function DoubtCard({ id, name, email, text }: DoubtCardProps) {
   const [isSending, setIsSending] = useState<boolean>(false);
   const [answer, setAnswer] = useState<string>("");
 
@@ -23,7 +22,6 @@ function DoubtCard({ id, name, email, text, sideEffect }: DoubtCardProps) {
         answer: answer,
         contactEmail: email,
       });
-      sideEffect();
       toast.success("Dúvida respondida com sucesso!");
       setAnswer("");
     } catch (error: any) {
