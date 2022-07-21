@@ -68,27 +68,32 @@ function Testimonials() {
       </div>
       <div className="grid place-items-center px-[135px] mt-2 w-screen">
         <p className="text-[20px] text-center">
-          Descrição dos depoimentos aqui.
+          Esta seção é dedicada para todos que quiserem postar algum tipo de
+          experiência vivida com um parente próximo ou até mesmo pessoal. Clique
+          no botão azul para contar um pouquinho sobre seu aprendizado com
+          tratamentos de reabilitação.
         </p>
       </div>
-      <div className="w-scren flex flex-col overflow-x-hidden items-center justify-center gap-y-4 my-4">
-        {isGettingTestimonials ? (
+      {isGettingTestimonials ? (
+        <div className="grid place-items-center my-4">
           <LoadingIcon />
-        ) : testimonials.length === 0 ? (
-          <h1 className="text-center text-[36px]">
-            NENHUM DEPOIMENTO CADASTRADO
-          </h1>
-        ) : (
-          testimonials.map((testimonial: any) => {
+        </div>
+      ) : testimonials.length === 0 ? (
+        <h1 className="text-center text-[36px] my-4">
+          NENHUM DEPOIMENTO CADASTRADO
+        </h1>
+      ) : (
+        <div className="w-screen h-[calc(70vh-1rem)] flex flex-col overflow-x-hidden overflow-y-auto items-center justify-center gap-y-4 my-4">
+          {testimonials.map((testimonial: any) => {
             return (
               <TestimonialField
                 author={testimonial.author}
                 text={testimonial.text}
               />
             );
-          })
-        )}
-      </div>
+          })}
+        </div>
+      )}
       {showNewTestimonialForm ? (
         <div ref={myRef} className="flex flex-row items-center justify-center">
           <DefaultForm

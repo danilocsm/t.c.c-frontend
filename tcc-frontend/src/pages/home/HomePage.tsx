@@ -34,8 +34,8 @@ const sections = [
 
 function HomePage() {
   return (
-    <div className="w-screen flex flex-col items-center justify-center">
-      <div className="w-[calc(80%-2rem)] grid place-items-center grid-cols-2 gap-4 mt-4 px-8">
+    <div className="w-screen grid place-items-center">
+      <div className="w-[calc(80%-2rem)] flex flex-wrap  justify-center gap-4 mt-4 px-8">
         {sections.map((section) => {
           return (
             <SectionContainer

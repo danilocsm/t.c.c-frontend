@@ -9,7 +9,6 @@ import DoubtCard from "./DoubtCard";
 function DoubtsDashboard() {
   const [doubts, setDoubts] = useState<any[]>([]);
   const [isFetchingData, setIsFetchingData] = useState(false);
-  const forceUpdate = useForceUpdate();
 
   const fetchDoubts = async () => {
     setIsFetchingData(true);

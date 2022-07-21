@@ -26,15 +26,11 @@ function Help() {
         <div className="text-center md:px-[317px] mt-4">
           <h1 className="text-[36px]">TIRE SUA DÚVIDA AQUI</h1>
         </div>
-        <div className="md:px-[135px] text-center mt-4">
-          <p className="text-[20px]">
-            Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
-            qui esse pariatur duis deserunt mollit dolore cillum minim tempor
-            enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut
-            voluptate aute id deserunt nisi.Aliqua id fugiat nostrud irure ex
-            duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt
-            mollit dolore cillum minim tempor enim. Elit aute irure tempor
-            cupidatat incididunt sint deserunt.
+        <div className="md:px-[135px] mt-4">
+          <p className="text-[20px] text-center">
+            Esta seção é dedicada para que você nos envie qualquer tipo de dúvida que tiver em relação ao nosso
+            trabalho no CER. Preenchar os campos abaixo com seu nome e um e-mail válido que responderemos a sua pergunta
+            assim que tivermos a oportunidade.
           </p>
         </div>
         <DefaultForm

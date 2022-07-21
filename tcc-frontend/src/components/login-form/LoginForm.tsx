@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { useForceUpdate } from "../../hooks/custom.hooks";
 import loginService from "../../lib/services/login.service";
 import LoadingIcon from "../LoadingIcon";
 
@@ -8,7 +7,7 @@ interface LoginFormProps {
   sideEffect: () => void;
 }
 
-function LoginForm( {sideEffect}: LoginFormProps) {
+function LoginForm({ sideEffect }: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSigningIn, setIsSigningIn] = useState(false);
