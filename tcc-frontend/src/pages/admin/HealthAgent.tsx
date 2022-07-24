@@ -3,6 +3,7 @@ import ActivityForm from "../../components/activity-components/ActivityForm";
 import ActivitiesDashboard from "../../components/admin-components/ActivitiesDashboard";
 import AgentBio from "../../components/admin-components/AgentBio";
 import DoubtsDashboard from "../../components/admin-components/DoubtsDashboard";
+import EditAgentForm from "../../components/admin-components/EditAgentForm";
 import ItemsDashboard from "../../components/admin-components/ItemsDashboard";
 import OptionsLayout from "../../components/admin-components/OptionsLayout";
 import ItemForm from "../../components/item-components/ItemForm";
@@ -47,23 +48,24 @@ function HealthAgentPage() {
         <LogoutButton sideEffect={forceUpdate} />
       </div>
       <AgentBio
-        username={userData.username}
-        email={userData.email}
-        picture={userData.picture}
+        username={userData.username || ""}
+        email={userData.email || ""}
+        picture={userData.picture || ""}
       />
       <OptionsLayout
         onSelected={(selected: string) => {
           setOptionSelected(selected);
         }}
       />
-      <div className="mt-4 w-screen h-auto flex items-center justify-center">
+      <div className="mt-4 w-screen h-auto flex items-center justify-center py-4">
         {(optionSelected === "DÚVIDAS" && <DoubtsDashboard />) ||
           (optionSelected === "NOVA ATIVIDADE" && <ActivityForm />) ||
           (optionSelected === "NOVO UTENSÍLIO" && <ItemForm />) ||
           (optionSelected === "LISTA DE ATIVIDADES" && (
             <ActivitiesDashboard />
           )) ||
-          (optionSelected === "LISTA DE UTENSÍLIOS" && <ItemsDashboard />)}
+          (optionSelected === "LISTA DE UTENSÍLIOS" && <ItemsDashboard />) ||
+          (optionSelected === "EDITAR DADOS DO AGENTE" && <EditAgentForm />)}
       </div>
     </div>
   );

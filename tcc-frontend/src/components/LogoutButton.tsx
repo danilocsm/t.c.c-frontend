@@ -31,8 +31,7 @@ interface LogoutButtonProps {
   sideEffect: () => void;
 }
 
-function LogoutButton({sideEffect}: LogoutButtonProps) {
-
+function LogoutButton({ sideEffect }: LogoutButtonProps) {
   const handleLogout = async () => {
     const result = await confirm("Tem certeza que deseja sair?", options);
     if (result) {
