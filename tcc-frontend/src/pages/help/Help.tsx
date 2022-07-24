@@ -7,7 +7,6 @@ import { PublicApi } from "../../lib/api";
 function Help() {
   const onSubmit = async (event: FormEvent, data: any) => {
     event.preventDefault();
-    console.log(data);
     try {
       await PublicApi.post("/questions/create", {
         name: data.input1Value,
@@ -28,9 +27,10 @@ function Help() {
         </div>
         <div className="md:px-[135px] mt-4">
           <p className="text-[20px] text-center">
-            Esta seção é dedicada para que você nos envie qualquer tipo de dúvida que tiver em relação ao nosso
-            trabalho no CER. Preenchar os campos abaixo com seu nome e um e-mail válido que responderemos a sua pergunta
-            assim que tivermos a oportunidade.
+            Esta seção é dedicada para que você nos envie qualquer tipo de
+            dúvida que tiver em relação ao nosso trabalho no CER. Preenchar os
+            campos abaixo com seu nome e um e-mail válido que responderemos a
+            sua pergunta assim que tivermos a oportunidade.
           </p>
         </div>
         <DefaultForm

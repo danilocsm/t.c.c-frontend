@@ -14,12 +14,12 @@ function Activities() {
     setIsGettingActivities(true);
     try {
       const response = await PublicApi.get("activities/all");
-      setActivities(response.data);
-      toast.success("Atividades recuperadas com sucesso!");
+      if (response.data) {
+        setActivities(response.data);
+        toast.success("Atividades recuperadas com sucesso!");
+      }
     } catch (error: AxiosError | any) {
-      toast.error(
-        "Erro recuperando as atividades: " + error.response.data.message
-      );
+      toast.error("Erro recuperando as atividades");
     } finally {
       setIsGettingActivities(false);
     }

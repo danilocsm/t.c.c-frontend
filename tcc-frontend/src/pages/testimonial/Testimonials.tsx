@@ -22,7 +22,10 @@ function Testimonials() {
     setIsGettingTestimonials(true);
     try {
       const response = await PublicApi.get("/testimonials/all");
-      setTestimonials(response.data);
+      if (response.data) {
+        setTestimonials(response.data);
+        toast.success("Depoimentos recuperados com sucesso!");
+      }
     } catch (error: AxiosError | any) {
       toast.error("Erro recuperando os depoimentos.");
     } finally {
@@ -43,17 +46,16 @@ function Testimonials() {
 
   const onSubmit = async (event: FormEvent, data: any) => {
     event.preventDefault();
-    setShowNewTestimonialForm(false);
-    console.log(data);
     try {
       await PublicApi.post("/testimonials/create", {
         author: data.input1Value,
         text: data.textAreaValue,
       });
       toast.success("Depoimento adicionado com sucesso!");
-    } catch (error: AxiosError | any) {
-      toast.error(error.response.data.message);
+    } catch (error: any) {
+      toast.error("Erro ao tentar enviar novo depoimento");
     } finally {
+      setShowNewTestimonialForm(false);
       fetchTestimonials();
       await setTimeout(() => {
         window.scrollTo(0, 0);

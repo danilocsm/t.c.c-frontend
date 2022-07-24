@@ -1,4 +1,3 @@
-import LoginForm from "../../components/login-form/LoginForm";
 import SectionContainer from "../../components/SectionContainer";
 
 const sections = [
@@ -17,7 +16,7 @@ const sections = [
   {
     name: "Sobre o projeto",
     brief: "Clique no botão para conhecer mais sobre nosso projeto",
-    page: "/project",
+    page: "/about",
   },
   {
     name: "Depoimentos",

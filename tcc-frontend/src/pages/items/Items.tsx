@@ -22,8 +22,10 @@ function Items() {
     setIsGettingItems(true);
     try {
       const response = await PublicApi.get("/items/all/" + filter);
-      setItemsToRender(response.data);
-      toast.success("Items recuperados com sucesso");
+      if (response.data) {
+        setItemsToRender(response.data);
+        toast.success("Items recuperados com sucesso");
+      }
     } catch (error: AxiosError | any) {
       console.log(error.response.data.message);
       toast.error("Falha recuperando os itens: " + error.response.data.message);

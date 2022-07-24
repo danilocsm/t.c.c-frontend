@@ -12,6 +12,7 @@ const options = [
   "NOVO UTENSÍLIO",
   "LISTA DE ATIVIDADES",
   "LISTA DE UTENSÍLIOS",
+  "EDITAR DADOS DO AGENTE",
 ];
 
 function OptionsLayout({ onSelected }: OptionsLayoutProps) {
@@ -25,9 +26,9 @@ function OptionsLayout({ onSelected }: OptionsLayoutProps) {
     <RadioGroup
       value={selected}
       onChange={setSelected}
-      className="w-screen h-fit px-6 mt-6"
+      className="w-[calc(75vw-1rem)] h-fit px-6 mt-6"
     >
-      <div className="grid grid-cols-2 auto-rows-auto gap-2">
+      <div className="flex flex-wrap justify-center gap-2">
         {options.map((option) => {
           return (
             <RadioGroup.Option
@@ -40,14 +41,14 @@ function OptionsLayout({ onSelected }: OptionsLayoutProps) {
                     : ""
                 }
           ${checked ? "bg-cerPurple" : "bg-cerBlue"}
-            relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none col-span-2`
+            relative flex flex-[calc(50%-1rem)] cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none col-span-2`
               }
             >
               {({ active, checked }) => (
-                <div className="flex w-full items-center justify-between">
+                <div className="relative flex w-full items-center justify-center">
                   <div className="text-[20px]">{option}</div>
                   {checked && (
-                    <div className="shrink-0 text-black">
+                    <div className="absolute right-1 text-black">
                       <CheckIcon className="h-6 w-6" />
                     </div>
                   )}
