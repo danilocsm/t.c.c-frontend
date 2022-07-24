@@ -1,6 +1,6 @@
 import { RadioGroup } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import CheckIcon from "../CheckIcon";
+import {CheckIcon} from "../icons/index";
 
 interface ItemsOptionsLayoutProps {
   onOptionSelected: (selected: string) => void;

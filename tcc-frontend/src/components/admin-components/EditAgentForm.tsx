@@ -1,7 +1,7 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { PrivateApi } from "../../lib/api";
-import LoadingIcon from "../LoadingIcon";
+import { LoadingIcon } from "../icons/index";
 
 function EditAgentForm() {
   const [inputs, setInputs] = useState<{ name: string; email: string }>({

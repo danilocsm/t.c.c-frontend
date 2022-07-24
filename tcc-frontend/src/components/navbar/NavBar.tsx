@@ -1,4 +1,4 @@
-import HomeLogo from "../HomeLogo";
+import { HomeLogo } from "../icons/index";
 import NavBarItem from "./NavBarItem";
 import DropMenu from "../DropMenu";
 
@@ -8,7 +8,7 @@ const navItems = [
   { title: "Projeto", href: "/about" },
   { title: "Depoimentos", href: "/testimonials" },
   { title: "Dúvidas", href: "/help" },
-  { title: "Agente de saúde", href: "/admins"},
+  { title: "Agente de saúde", href: "/admins" },
 ];
 
 function NavBar() {

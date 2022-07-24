@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import LoadingIcon from "../LoadingIcon";
+import { LoadingIcon } from "../icons/index";
 
 interface DefaultFormProps {
   input1Data: { label: string; placeholder: string };

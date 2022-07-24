@@ -4,7 +4,7 @@ import { PrivateApi } from "../../lib/api";
 import ActivityImageInput from "./ActivityImageInput";
 import ActivityFormDifficulty from "./ActivityFormDifficulty";
 import ActivityFormItemsInput from "./ActivityFormItemsInput";
-import LoadingIcon from "../LoadingIcon";
+import { LoadingIcon } from "../icons/index";
 
 type FormStringInputs = {
   name: string;

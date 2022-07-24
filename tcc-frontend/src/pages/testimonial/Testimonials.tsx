@@ -3,7 +3,7 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import CloseButton from "../../components/CloseButton";
 import DefaultForm from "../../components/default-form/DefaultForm";
-import LoadingIcon from "../../components/LoadingIcon";
+import { LoadingIcon } from "../../components/icons/index";
 import { PublicApi } from "../../lib/api";
 import AddTestimonialButton from "../../components/testimonial-components/AddTestimonialButton";
 import TestimonialField from "../../components/testimonial-components/TestimonialField";

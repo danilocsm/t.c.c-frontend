@@ -3,7 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { PublicApi } from "../../lib/api";
 import SearchButton from "./SearchButton";
-import SearchIcon from "./SearchIcon";
+import { SearchIcon } from "../icons/index";
 
 function SearchBar() {
   const [inputValue, setInputValue] = useState("");

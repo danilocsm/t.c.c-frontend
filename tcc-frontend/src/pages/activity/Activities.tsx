@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ActivityGridObject from "../../components/grid-object/ActivityGridObject";
-import LoadingIcon from "../../components/LoadingIcon";
+import { LoadingIcon } from "../../components/icons/index";
 import SearchBar from "../../components/searchbar/SearchBar";
 import { PublicApi } from "../../lib/api";
 

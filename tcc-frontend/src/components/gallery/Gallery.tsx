@@ -1,6 +1,5 @@
 import { useRef } from "react";
-import LeftArrow from "../LeftArrow";
-import RightArrow from "../RightArrow";
+import { LeftArrow, RightArrow } from "../icons/index";
 
 interface GalleryProps {
   children?: JSX.Element[] | JSX.Element;
@@ -21,10 +20,7 @@ function Gallery(props: GalleryProps) {
 
   return (
     <div className="relative w-screen grid grid-flow-col h-[calc(50vh-1rem)] place-items-center my-10 rounded-[20px] px-12">
-      <button
-        onClick={onLeftButtonClick}
-        className=" w-[100px] h-[51px]"
-      >
+      <button onClick={onLeftButtonClick} className=" w-[100px] h-[51px]">
         <LeftArrow />
       </button>
       <div
@@ -33,10 +29,7 @@ function Gallery(props: GalleryProps) {
       >
         {props.children}
       </div>
-      <button
-        onClick={onRightButtonClick}
-        className=" w-[100px] h-[51px]"
-      >
+      <button onClick={onRightButtonClick} className=" w-[100px] h-[51px]">
         <RightArrow />
       </button>
     </div>

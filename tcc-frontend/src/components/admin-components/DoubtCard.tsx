@@ -1,7 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { PrivateApi } from "../../lib/api";
-import LoadingIcon from "../LoadingIcon";
+import { LoadingIcon } from "../icons/index";
 
 interface DoubtCardProps {
   id: string;

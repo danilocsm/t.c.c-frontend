@@ -1,4 +1,3 @@
-import { Slide } from "pure-react-carousel";
 import Gallery from "../../components/gallery/Gallery";
 import InfoBox from "../../components/InfoBox";
 
@@ -19,14 +18,7 @@ function ProjectPage() {
           <p className="font-grandstander text-xl text-black mt-4  pr-4 text-center indent-5"></p>
         </div>
       </div>
-      <Gallery>
-        <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-        <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-        <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-        <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-        <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-        <div className="md:w-[300px] md:h-[300px] rounded-[20px] bg-zinc-500 w-[150px] h-[150px] md:inline-block snap-start"></div>
-      </Gallery>
+      {/* <Gallery>adicionar imagens do CER</Gallery> */}
       <InfoBox
         title={"CONTATOS:"}
         content={

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ItemGridObject from "../../components/grid-object/ItemGridObject";
 import ItemsOptionsLayout from "../../components/item-components/ItemsOptionsButtons";
-import LoadingIcon from "../../components/LoadingIcon";
+import { LoadingIcon } from "../../components/icons/index";
 import { PublicApi } from "../../lib/api";
 
 type ItemsType = {

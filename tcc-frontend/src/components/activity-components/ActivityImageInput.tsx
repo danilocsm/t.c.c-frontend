@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import UploadIcon from "../UploadIcon";
+import { UploadIcon } from "../icons/index";
 
 interface ActivityImageInputProps {
   isFormSent?: boolean;

@@ -4,7 +4,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { PrivateApi } from "../../lib/api";
 import ActivityFormItemsInput from "../activity-components/ActivityFormItemsInput";
-import LoadingIcon from "../LoadingIcon";
+import { LoadingIcon } from "../icons/index";
 
 type FormStringInputs = {
   name: string;

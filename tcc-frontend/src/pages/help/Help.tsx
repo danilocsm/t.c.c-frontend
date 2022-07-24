@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import DefaultForm from "../../components/default-form/DefaultForm";
 import { PublicApi } from "../../lib/api";

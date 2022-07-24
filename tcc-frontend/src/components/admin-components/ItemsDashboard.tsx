@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useForceUpdate } from "../../hooks/custom.hooks";
 import { PublicApi } from "../../lib/api";
-import LoadingIcon from "../LoadingIcon";
+import { LoadingIcon } from "../icons/index";
 import UpdateButton from "../UpdateButton";
 import ItemEditForm from "./ItemEditForm";
 

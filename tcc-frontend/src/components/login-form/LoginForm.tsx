@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import loginService from "../../lib/services/login.service";
-import LoadingIcon from "../LoadingIcon";
+import { LoadingIcon } from "../icons/index";
 
 interface LoginFormProps {
   sideEffect: () => void;

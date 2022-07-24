@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import UploadIcon from "../UploadIcon";
+import { UploadIcon } from "../icons/index";
 
 interface ActivityFormItemsInputProps {
   setItems: (items: any) => void;

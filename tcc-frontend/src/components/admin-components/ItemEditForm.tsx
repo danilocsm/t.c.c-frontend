@@ -1,8 +1,7 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { PrivateApi } from "../../lib/api";
-import LoadingIcon from "../LoadingIcon";
-import UploadIcon from "../UploadIcon";
+import { LoadingIcon, UploadIcon } from "../icons/index";
 
 interface ItemEditFormProps {
   id: string;
@@ -12,13 +11,7 @@ interface ItemEditFormProps {
   image: string;
 }
 
-function ItemEditForm({
-  id,
-  name,
-  price,
-  link,
-  image,
-}: ItemEditFormProps) {
+function ItemEditForm({ id, name, price, link, image }: ItemEditFormProps) {
   const [inputs, setInputs] = useState<{
     name: string;
     price: string;

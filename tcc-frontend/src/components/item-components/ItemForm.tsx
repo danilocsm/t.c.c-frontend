@@ -1,8 +1,7 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { PrivateApi } from "../../lib/api";
-import LoadingIcon from "../LoadingIcon";
-import UploadIcon from "../UploadIcon";
+import { LoadingIcon, UploadIcon } from "../icons/index";
 import ItemsOptionsButtons from "./ItemsOptionsButtons";
 
 const parseItemType = (itemType: string) => {
